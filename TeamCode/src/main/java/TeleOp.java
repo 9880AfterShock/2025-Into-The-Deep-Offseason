@@ -33,6 +33,7 @@
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import Mechanisms.DriveTrain;
 
 
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp(name="WCI TeleOp")
@@ -45,7 +46,7 @@ public class TeleOp extends LinearOpMode {
     public void runOpMode() {
 
         //Init Functions
-//one would go here lol
+        DriveTrain.initDrive(this);
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
@@ -58,7 +59,7 @@ public class TeleOp extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
             //Loop Functions
-            //one would go here lol
+            DriveTrain.updateDrive();
 
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.update();
