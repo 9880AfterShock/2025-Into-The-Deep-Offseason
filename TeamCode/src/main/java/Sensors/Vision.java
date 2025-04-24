@@ -107,9 +107,9 @@ public final class Vision { //Prefix for commands
         opmode.telemetry.addData("preview on/off", "... Camera Stream\n");
 
         // Read the current list
-        List blobsYellow = colorLocatorYellow.blobs;
-        List blobsRed = colorLocatorRed.blobs;
-        List blobsBlue = colorLocatorBlue.blobs;
+        List blobsYellow = colorLocatorYellow.getBlobs();
+        List blobsRed = colorLocatorRed.getBlobs();
+        List blobsBlue = colorLocatorBlue.getBlobs();
         List allBlobs = new ArrayList();
         allBlobs.addAll(blobsYellow);
         allBlobs.addAll(blobsRed);
@@ -129,10 +129,10 @@ public final class Vision { //Prefix for commands
         opmode.telemetry.addLine(" Area Density Aspect  Center");
 
         if (!allBlobs.isEmpty()) {
-            RotatedRect boxFit = ((ColorBlobLocatorProcessor.Blob) allBlobs.get(0)).boxFit;
+            RotatedRect boxFit = ((ColorBlobLocatorProcessor.Blob) allBlobs.get(0)).getBoxFit();
 
-            Point leftMost = getMostLeftPoint(((ColorBlobLocatorProcessor.Blob) allBlobs.get(0)).contourPoints);
-            Point rightMost = getMostRightPoint(((ColorBlobLocatorProcessor.Blob) allBlobs.get(0)).contourPoints);
+            Point leftMost = getMostLeftPoint(((ColorBlobLocatorProcessor.Blob) allBlobs.get(0)).getContourPoints());
+            Point rightMost = getMostRightPoint(((ColorBlobLocatorProcessor.Blob) allBlobs.get(0)).getContourPoints());
 
             if (leftMost != null) {
                 if (rightMost != null) {
@@ -156,7 +156,7 @@ public final class Vision { //Prefix for commands
 
         //yoinked from example code, might not work
         if (!allBlobs.isEmpty()) {
-            RotatedRect boxFit = ((ColorBlobLocatorProcessor.Blob) allBlobs.get(0)).boxFit;
+            RotatedRect boxFit = ((ColorBlobLocatorProcessor.Blob) allBlobs.get(0)).getBoxFit();
             Rect myHorizontalBoxFit = boxFit.boundingRect();
             org.opencv.core.Size angleOfSample = myHorizontalBoxFit.size();
             opmode.telemetry.addData("angles rotated size", angleOfSample);
@@ -180,8 +180,8 @@ public final class Vision { //Prefix for commands
 
         opmode.telemetry.addData("avg over time", testTelemetry);
         if (!allBlobs.isEmpty()) {
-            opmode.telemetry.addData("angles raw", ((ColorBlobLocatorProcessor.Blob) allBlobs.get(0)).boxFit.angle); //need to adjust
-            opmode.telemetry.addData("angles", 7.0 / 1800.0 * (((ColorBlobLocatorProcessor.Blob) allBlobs.get(0)).boxFit.angle % 180) + 0.15);
+            opmode.telemetry.addData("angles raw", ((ColorBlobLocatorProcessor.Blob) allBlobs.get(0)).getBoxFit().angle); //need to adjust
+            opmode.telemetry.addData("angles", 7.0 / 1800.0 * (((ColorBlobLocatorProcessor.Blob) allBlobs.get(0)).getBoxFit().angle % 180) + 0.15);
             opmode.telemetry.update();
         } else {
             //opmode.telemetry.addData("none", "all angles");
@@ -197,7 +197,7 @@ public final class Vision { //Prefix for commands
 
     //Thanks escape velocity :D
     public static boolean setExposure(int exposure) {
-        if (portal.cameraState != VisionPortal.CameraState.STREAMING) {
+        if (portal.getCameraState() != VisionPortal.CameraState.STREAMING) {
             return false;
         }
 
