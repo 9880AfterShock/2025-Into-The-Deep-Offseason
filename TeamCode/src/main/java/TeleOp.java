@@ -37,6 +37,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import Mechanisms.DriveTrain;
 import Mechanisms.Pickup.Claw;
+import Mechanisms.Pickup.Extension;
 import Mechanisms.Pickup.Swivel;
 import Mechanisms.Pickup.Wrist;
 import Mechanisms.Scoring.BasketLift;
@@ -61,6 +62,7 @@ public class TeleOp extends LinearOpMode {
         Claw.initClaw(this);
         Swivel.initSwivel(this);
         Wrist.initWrist(this);
+        Extension.initLift(this);
 
         BasketLift.initLift(this);
         SpecimenClaw.initClaw(this);
@@ -87,6 +89,7 @@ public class TeleOp extends LinearOpMode {
             Claw.updateClaw();
             Swivel.updateSwivel();
             Wrist.updateWrist();
+            Extension.updateLift();
 
             BasketLift.updateLift();
             SpecimenClaw.updateClaw();
