@@ -30,6 +30,8 @@
 //package org.firstinspires.ftc.teamcode; fafo ig
 
 
+import android.view.textservice.SpellCheckerInfo;
+
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -73,6 +75,7 @@ public class TeleOp extends LinearOpMode {
 
         // Wait for the game to start (driver presses START)
         waitForStart();
+        SpecimenSwivel.moveOut();
         runtime.reset();
 
 
