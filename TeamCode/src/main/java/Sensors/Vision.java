@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import Mechanisms.Scoring.SpecimenSwivel;
 
-public final class Vision { //Prefix for commands
+public class Vision { //Prefix for commands
 
     public static ColorBlobLocatorProcessor colorLocatorRed;
     public static ColorBlobLocatorProcessor colorLocatorBlue;
