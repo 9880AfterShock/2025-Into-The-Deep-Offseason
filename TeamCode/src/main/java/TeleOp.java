@@ -34,6 +34,14 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import Mechanisms.DriveTrain;
+import Mechanisms.Pickup.Claw;
+import Mechanisms.Pickup.Swivel;
+import Mechanisms.Pickup.Wrist;
+import Mechanisms.Scoring.BasketLift;
+import Mechanisms.Scoring.SpecimenClaw;
+import Mechanisms.Scoring.SpecimenLift;
+import Mechanisms.Scoring.SpecimenSwivel;
+import Sensors.Vision;
 
 
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp(name="WCI TeleOp")
@@ -48,6 +56,17 @@ public class TeleOp extends LinearOpMode {
         //Init Functions
         DriveTrain.initDrive(this);
 
+        Claw.initClaw(this);
+        Swivel.initSwivel(this);
+        Wrist.initWrist(this);
+
+        BasketLift.initLift(this);
+        SpecimenClaw.initClaw(this);
+        SpecimenLift.initLift(this);
+        SpecimenSwivel.initSwivel(this);
+
+        Vision.updateVision();
+
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
@@ -56,10 +75,20 @@ public class TeleOp extends LinearOpMode {
         waitForStart();
         runtime.reset();
 
+
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
             //Loop Functions
             DriveTrain.updateDrive();
+
+            Claw.updateClaw();
+            Swivel.updateSwivel();
+            Wrist.updateWrist();
+
+            BasketLift.updateLift();
+            SpecimenClaw.updateClaw();
+            SpecimenLift.updateLift();
+            SpecimenSwivel.updateSwivel();
 
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.update();
