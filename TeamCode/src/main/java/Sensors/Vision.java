@@ -195,43 +195,6 @@ public final class Vision { //Prefix for commands
         portal.close();
     }
 
-    //Thanks escape velocity :D
-    public static boolean setExposure(int exposure) {
-        if (portal.getCameraState() != VisionPortal.CameraState.STREAMING) {
-            return false;
-        }
-
-        ExposureControl control = portal.getCameraControl(ExposureControl.class);
-        control.mode = ExposureControl.Mode.Manual;
-        return control.setExposure((long) exposure, TimeUnit.MILLISECONDS);
-    }
-
-    public static boolean setExposure() {
-        return setExposure(exposureMillis);
-    }
-
-    public static boolean waitForSetExposure(long timeoutMs, int maxAttempts, int exposure) {
-        long startMs = System.currentTimeMillis();
-        int attempts = 0;
-        long msAfterStart;
-
-        do {
-            msAfterStart = System.currentTimeMillis() - startMs;
-            Log.i("camera", "Attempting to set camera exposure, attempt " + (attempts + 1) + ", " + msAfterStart + " ms after start");
-            if (setExposure(exposure)) {
-                Log.i("camera", "Set exposure succeeded");
-                return true;
-            }
-            attempts++;
-        } while (msAfterStart < timeoutMs && attempts < maxAttempts);
-
-        Log.e("camera", "Set exposure failed");
-        return false;
-    }
-
-    public static boolean waitForSetExposure(long timeoutMs, int maxAttempts) {
-        return waitForSetExposure(timeoutMs, maxAttempts, exposureMillis);
-    }
 
     private static Point getHighestPoint(Point[] points) {
         Point highest = null;
