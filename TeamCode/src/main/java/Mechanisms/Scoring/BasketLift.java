@@ -60,7 +60,7 @@ public class BasketLift { // Prefix for commands
         upButtonPreviouslyPressed = upButtonCurrentlyPressed;
 
         // pos += currentSpeed
-        lift.setPower(0.7); // turn motor on //might need to change based on stuff
+        lift.setPower(1.0); // turn motor on //might need to change based on stuff
         lift.setTargetPosition((int) (pos * encoderTicks));
         opmode.telemetry.addData("Basket Lift target position", pos); // Set telemetry
     }
