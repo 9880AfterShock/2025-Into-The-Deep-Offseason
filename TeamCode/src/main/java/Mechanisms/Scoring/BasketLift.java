@@ -22,7 +22,7 @@ public class BasketLift { // Prefix for commands
 
     public static void initLift(OpMode opmode) { // init motors
         pos = 0.0;
-        lift = opmode.hardwareMap.get(DcMotor.class, "specimenLift"); // config name
+        lift = opmode.hardwareMap.get(DcMotor.class, "basketLift"); // config name
         lift.setTargetPosition((int) (pos * encoderTicks));
         lift.setMode(encoderMode); // reset encoder
         lift.setMode(motorMode); // enable motor mode
