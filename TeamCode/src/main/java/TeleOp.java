@@ -69,7 +69,7 @@ public class TeleOp extends LinearOpMode {
         SpecimenLift.initLift(this);
         SpecimenSwivel.initSwivel(this);
 
-        Vision.updateVision();
+        //Vision.updateVision();
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
@@ -96,7 +96,7 @@ public class TeleOp extends LinearOpMode {
             SpecimenLift.updateLift();
             SpecimenSwivel.updateSwivel();
 
-            Vision.updateVision();
+            //Vision.updateVision();
 
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.update();
