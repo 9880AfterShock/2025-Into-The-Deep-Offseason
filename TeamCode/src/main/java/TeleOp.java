@@ -44,6 +44,7 @@ import Mechanisms.Scoring.BasketLift;
 import Mechanisms.Scoring.SpecimenClaw;
 import Mechanisms.Scoring.SpecimenLift;
 import Mechanisms.Scoring.SpecimenSwivel;
+import Mechanisms.Transfer.PipeWrench;
 import Sensors.Vision;
 
 
@@ -68,6 +69,8 @@ public class TeleOp extends LinearOpMode {
         SpecimenClaw.initClaw(this);
         SpecimenLift.initLift(this);
         SpecimenSwivel.initSwivel(this);
+
+        PipeWrench.initTransfer(this);
 
         //Vision.updateVision();
 
@@ -95,6 +98,8 @@ public class TeleOp extends LinearOpMode {
             SpecimenClaw.updateClaw();
             SpecimenLift.updateLift();
             //SpecimenSwivel.updateSwivel();
+
+            PipeWrench.updateTransfer();
 
             //Vision.updateVision();
 
