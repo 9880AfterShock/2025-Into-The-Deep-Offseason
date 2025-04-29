@@ -6,10 +6,10 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class PipeWrench {
     private static Servo transfer;
     private static Servo transferClaw;
-    public static double openPos = 0.98; //for transfer claw
-    public static double closePos = 0.73; //for transfer claw
-    public static double outPos = 0.5; //for transfer
-    public static double inPos = 0.1; //for transfer
+    public static double openPos = 0.7; //for transfer claw
+    public static double closePos = 0.95; //for transfer claw
+    public static double outPos = 0.7; //for transfer
+    public static double inPos = 0.04; //for transfer
     public static double backPos = 0.0; //for transfer
     private static String clawState = "Closed";
     private static String state = "In";
