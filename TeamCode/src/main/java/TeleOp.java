@@ -94,7 +94,7 @@ public class TeleOp extends LinearOpMode {
             BasketLift.updateLift();
             SpecimenClaw.updateClaw();
             SpecimenLift.updateLift();
-            SpecimenSwivel.updateSwivel();
+            //SpecimenSwivel.updateSwivel();
 
             //Vision.updateVision();
 
