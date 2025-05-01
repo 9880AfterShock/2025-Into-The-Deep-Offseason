@@ -11,7 +11,7 @@ public class Extension { //Prefix for commands
     public static double speed = 0.05; //Update speed
     public static final double encoderTicks = 751.8; //might need to change (old old was 537.7)
     public static double minPos = 0.0;
-    public static double maxPos = 3.0; //needs to be changed
+    public static double maxPos = 3.5; //needs to be changed
     public static OpMode opmode;
     public static DcMotor.RunMode encoderMode = DcMotor.RunMode.STOP_AND_RESET_ENCODER;
     public static DcMotor.RunMode motorMode = DcMotor.RunMode.RUN_TO_POSITION;
