@@ -14,9 +14,7 @@ public class Brick {
     private static boolean transferButtonCurrentlyPressed = false;
     private static boolean transferButtonPreviouslyPressed = false;
     private static boolean transferIntakeButtonCurrentlyPressed = false;
-    private static boolean transferIntakeButtonPreviouslyPressed = false;
     private static boolean transferOuttakeButtonCurrentlyPressed = false;
-    private static boolean transferOuttakeButtonPreviouslyPressed = false;
 
     private static OpMode opmode;
 
@@ -81,8 +79,6 @@ public class Brick {
         updateRollers();
 
         transferButtonPreviouslyPressed = transferButtonCurrentlyPressed;
-        transferIntakeButtonPreviouslyPressed = transferIntakeButtonCurrentlyPressed;
-        transferOuttakeButtonPreviouslyPressed = transferOuttakeButtonCurrentlyPressed;
 
 
         opmode.telemetry.addData("Transfer State", state);
