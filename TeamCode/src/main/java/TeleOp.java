@@ -69,8 +69,8 @@ public class TeleOp extends LinearOpMode {
         SpecimenLift.initLift(this);
         SpecimenSwivel.initSwivel(this);
 
-        //PipeWrench.initTransfer(this);
-        Brick.initTransfer(this);
+        PipeWrench.initTransfer(this);
+        //Brick.initTransfer(this);
 
         //Vision.updateVision();
 
@@ -99,8 +99,8 @@ public class TeleOp extends LinearOpMode {
             SpecimenLift.updateLift();
             //SpecimenSwivel.updateSwivel();
 
-            //PipeWrench.updateTransfer();
-            Brick.updateTransfer();
+            PipeWrench.updateTransfer();
+            //Brick.updateTransfer();
 
             //Vision.updateVision();
 
