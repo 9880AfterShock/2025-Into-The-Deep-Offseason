@@ -8,6 +8,7 @@ public class Brick {
     private static Servo transferLeft; //left intake servo
     private static Servo transferRight; //right intake servo
     public static double inPos = 0.9; //for pickuop
+    public static double upPos = 0.5; //for test
     public static double backPos = 0.15; //for deposit
     private static String state = "In";
     private static String rollerState = "Static";
@@ -28,6 +29,7 @@ public class Brick {
     }
 
     public static void in() {
+        transfer.setPosition(upPos);
         transfer.setPosition(inPos);
         state = "In";
     }
