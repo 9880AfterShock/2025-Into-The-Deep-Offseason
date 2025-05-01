@@ -80,7 +80,6 @@ public class Brick {
 
         transferButtonPreviouslyPressed = transferButtonCurrentlyPressed;
 
-
         opmode.telemetry.addData("Transfer State", state);
     }
 }
