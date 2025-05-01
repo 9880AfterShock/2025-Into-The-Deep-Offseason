@@ -30,8 +30,6 @@
 //package org.firstinspires.ftc.teamcode; fafo ig
 
 
-import android.view.textservice.SpellCheckerInfo;
-
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -45,6 +43,7 @@ import Mechanisms.Scoring.SpecimenClaw;
 import Mechanisms.Scoring.SpecimenLift;
 import Mechanisms.Scoring.SpecimenSwivel;
 import Mechanisms.Transfer.PipeWrench;
+import Mechanisms.Transfer.Brick;
 import Sensors.Vision;
 
 
@@ -70,7 +69,8 @@ public class TeleOp extends LinearOpMode {
         SpecimenLift.initLift(this);
         SpecimenSwivel.initSwivel(this);
 
-        PipeWrench.initTransfer(this);
+        //PipeWrench.initTransfer(this);
+        Brick.initTransfer(this);
 
         //Vision.updateVision();
 
@@ -99,7 +99,8 @@ public class TeleOp extends LinearOpMode {
             SpecimenLift.updateLift();
             //SpecimenSwivel.updateSwivel();
 
-            PipeWrench.updateTransfer();
+            //PipeWrench.updateTransfer();
+            Brick.updateTransfer();
 
             //Vision.updateVision();
 
