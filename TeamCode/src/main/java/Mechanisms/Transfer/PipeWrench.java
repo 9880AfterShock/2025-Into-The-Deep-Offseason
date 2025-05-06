@@ -8,7 +8,7 @@ public class PipeWrench {
     private static Servo transferClaw;
     public static double openPos = 0.7; //for transfer claw
     public static double closePos = 0.95; //for transfer claw
-    public static double outPos = 0.7; //for transfer
+    public static double outPos = 0.45; //for transfer
     public static double inPos = 0.04; //for transfer
     public static double backPos = 0.0; //for transfer
     private static String clawState = "Closed";

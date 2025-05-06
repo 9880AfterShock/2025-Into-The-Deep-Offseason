@@ -8,8 +8,8 @@ public class BasketLift { // Prefix for commands
     private static double pos = 0.0; // starting Position
     private static final double encoderTicks = 537.7; // calculate your own ratio // negative to invert values
     public static double minPos = 0.0; // all the way down
-    public static double midPos = 2.5; //for low basket
-    public static double maxPos = 3.5; // need to change
+    public static double midPos = 3.5; //for low basket
+    public static double maxPos = 6.5; // need to change
     private static OpMode opmode; // opmode var init
     private static boolean downButtonCurrentlyPressed = false;
     private static boolean downButtonPreviouslyPressed = false;

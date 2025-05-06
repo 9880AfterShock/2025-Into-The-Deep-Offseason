@@ -59,8 +59,8 @@ public class TeleOp extends LinearOpMode {
         //Init Functions
         DriveTrain.initDrive(this);
 
-        //Claw.initClaw(this);
-        //Swivel.initSwivel(this);
+        Claw.initClaw(this);
+        Swivel.initSwivel(this);
         //Wrist.initWrist(this);
         Extension.initLift(this);
 
@@ -89,8 +89,8 @@ public class TeleOp extends LinearOpMode {
             //Loop Functions
             DriveTrain.updateDrive();
 
-            //Claw.updateClaw();
-            //Swivel.updateSwivel();
+            Claw.updateClaw();
+            Swivel.updateSwivel();
             //Wrist.updateWrist();
             Extension.updateLift();
 
