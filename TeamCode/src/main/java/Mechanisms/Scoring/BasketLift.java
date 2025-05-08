@@ -89,7 +89,7 @@ public class BasketLift { // Prefix for commands
             PipeWrench.back();
         } else if (pos > inPos && lift.getCurrentPosition()*encoderTicks > inPos) {
             PipeWrench.in();
-        } else if (pos > minPos && !(lastDropTimestamp + dropDelay > opmode.getRuntime())) {
+        } else if (pos > minPos) {
             PipeWrench.out();
         } else if (lastDropTimestamp + dropDelay > opmode.getRuntime() && lastDropTimestamp != 0.0) { //make sure it was not the init/resting setup of 0.0
             PipeWrench.in();
@@ -102,8 +102,11 @@ public class BasketLift { // Prefix for commands
         if (pos < backPos && PipeWrench.transfer.getPosition() >= inPos) { //is in inPos or outPos
             safePos = backPos;
         }
-        if (pos < inPos && lift.getCurrentPosition()/encoderTicks > pickupPos && PipeWrench.transfer.getPosition() == PipeWrench.outPos) {
+        if (pos < inPos && lift.getCurrentPosition()/encoderTicks > inPos && PipeWrench.transfer.getPosition() == PipeWrench.outPos) {
             safePos = inPos;
+        }
+        if (pos > pickupPos && lift.getCurrentPosition()/encoderTicks < pickupPos && PipeWrench.transfer.getPosition() == PipeWrench.outPos) {
+            safePos = pickupPos;
         }
 
     }
