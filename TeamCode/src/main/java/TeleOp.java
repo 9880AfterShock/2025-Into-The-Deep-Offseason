@@ -51,7 +51,7 @@ import Sensors.Vision;
 public class TeleOp extends LinearOpMode {
 
     // Declare OpMode members.
-    private ElapsedTime runtime = new ElapsedTime();
+    ElapsedTime runtime = new ElapsedTime();
 
     @Override
     public void runOpMode() {
@@ -61,7 +61,7 @@ public class TeleOp extends LinearOpMode {
 
         Claw.initClaw(this);
         Swivel.initSwivel(this);
-        //Wrist.initWrist(this);
+        Wrist.initWrist(this);
         Extension.initLift(this);
 
         BasketLift.initLift(this);
@@ -91,7 +91,7 @@ public class TeleOp extends LinearOpMode {
 
             Claw.updateClaw();
             Swivel.updateSwivel();
-            //Wrist.updateWrist();
+            Wrist.updateWrist();
             Extension.updateLift();
 
             BasketLift.updateLift();

@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 public class SpecimenLift { // Prefix for commands
     private static DcMotor lift; // Init Motor Var
-    private static double pos = 0.0; // starting Position
+    static double pos = 0.0; // starting Position
     private static final double encoderTicks = -537.7; // calculate your own ratio // negative to invert values
     public static double minPos = 0.0; // all the way down
     public static double maxPos = 3.5; // GOOD and working

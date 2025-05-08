@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.Servo;
 
 public class PipeWrench {
-    private static Servo transfer;
+    public static Servo transfer;
     private static Servo transferClaw;
     public static double openPos = 0.7; //for transfer claw
     public static double closePos = 0.95; //for transfer claw
@@ -28,7 +28,7 @@ public class PipeWrench {
         state = "In";
     }
 
-    private static void open() {
+    public static void open() {
         transferClaw.setPosition(openPos);
         clawState = "Open";
     }

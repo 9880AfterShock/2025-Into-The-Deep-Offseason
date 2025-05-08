@@ -1,15 +1,24 @@
 package Mechanisms.Scoring;
 
+import static Mechanisms.Pickup.Claw.lastDropTimestamp;
+
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+
+import Mechanisms.Transfer.PipeWrench;
 
 public class BasketLift { // Prefix for commands
     private static DcMotor lift; // Init Motor Var
     private static double pos = 0.0; // starting Position
+    private static double safePos = 0.0; // alternate position for holding while transfer moves
     private static final double encoderTicks = 537.7; // calculate your own ratio // negative to invert values
     public static double minPos = 0.0; // all the way down
+    public static double inPos = 1.5; //height that it can clear the transfer basket
+    public static double backPos = 2.0; //height that it can clear the specimen lift
+    public static double pickupPos = 0.2; //height that it can go back in for pickup
     public static double midPos = 3.5; //for low basket
     public static double maxPos = 6.5; // need to change
+    public static double dropDelay = 0.5*1000000000; //time to wait to go in after the claw drops the sample (the multiplier for for converting to nanoseconds)
     private static OpMode opmode; // opmode var init
     private static boolean downButtonCurrentlyPressed = false;
     private static boolean downButtonPreviouslyPressed = false;
@@ -48,12 +57,14 @@ public class BasketLift { // Prefix for commands
             if (midButtonCurrentlyPressed && !midButtonPreviouslyPressed) {
                 pos = midPos;
             }
-            if (upButtonCurrentlyPressed && !upButtonPreviouslyPressed/* && SpecimenClaw.state.equals("Closed")*/) { //might need to change for new mechs
+            if (upButtonCurrentlyPressed && !upButtonPreviouslyPressed) {
                 pos = maxPos;
             }
         }
 
-        //checkDrop();
+        safePos = pos;
+
+        checkTransfer();
 
         downButtonPreviouslyPressed = downButtonCurrentlyPressed;
         midButtonPreviouslyPressed = midButtonCurrentlyPressed;
@@ -61,8 +72,9 @@ public class BasketLift { // Prefix for commands
 
         // pos += currentSpeed
         lift.setPower(1.0); // turn motor on //might need to change based on stuff
-        lift.setTargetPosition((int) (pos * encoderTicks));
+        lift.setTargetPosition((int) (safePos * encoderTicks));
         opmode.telemetry.addData("Basket Lift target position", pos); // Set telemetry
+        opmode.telemetry.addData("Basket Lift safety position", safePos); // Set telemetry
     }
 
 //    private static void checkDrop() {
@@ -70,4 +82,29 @@ public class BasketLift { // Prefix for commands
 //            SpecimenClaw.open();
 //        }
 //    }
+    private static void checkTransfer() {
+
+        //Setting PipeWrench position
+        if (pos > backPos + SpecimenLift.pos && lift.getCurrentPosition()*encoderTicks > backPos + SpecimenLift.pos) { //make sure that if the specimen lift is up, it is still safe to go (assuming specilift and baskilift use same rotation to vertical extension ratio)
+            PipeWrench.back();
+        } else if (pos > inPos && lift.getCurrentPosition()*encoderTicks > inPos) {
+            PipeWrench.in();
+        } else if (pos > minPos && !(lastDropTimestamp + dropDelay > opmode.getRuntime())) {
+            PipeWrench.out();
+        } else if (lastDropTimestamp + dropDelay > opmode.getRuntime() && lastDropTimestamp != 0.0) { //make sure it was not the init/resting setup of 0.0
+            PipeWrench.in();
+            if (PipeWrench.transfer.getPosition() == PipeWrench.inPos) {
+                PipeWrench.close();
+            }
+        }
+
+        //Making sure the lift is safe for the PipeWrench
+        if (pos < backPos && PipeWrench.transfer.getPosition() >= inPos) { //is in inPos or outPos
+            safePos = backPos;
+        }
+        if (pos < inPos && lift.getCurrentPosition()/encoderTicks > pickupPos && PipeWrench.transfer.getPosition() == PipeWrench.outPos) {
+            safePos = inPos;
+        }
+
+    }
 }

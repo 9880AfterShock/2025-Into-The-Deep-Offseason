@@ -1,12 +1,15 @@
 package Mechanisms.Pickup;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 public class Claw {
     private static Servo claw;
     public static double openPos = 0.98; // the positions
     public static double closePos = 0.73; // the positions // timo changed from 0.6 to 0.82 for new claw
+    public static double lastDropTimestamp = 0.0; //the last time that the claw dropped into the transfer
     private static String state = "Closed";
     private static boolean clawButtonCurrentlyPressed = false;
     private static boolean clawButtonPreviouslyPressed = false;
@@ -35,6 +38,11 @@ public class Claw {
         } else {
             open();
         }
+    }
+
+    public static void transfer() {
+        open(); //1000000000
+        lastDropTimestamp = opmode.getRuntime();
     }
 
     public static void updateClaw() {
