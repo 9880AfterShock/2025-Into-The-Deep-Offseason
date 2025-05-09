@@ -11,6 +11,7 @@ public class Extension { //Prefix for commands
     public static double speed = 0.1; //Update speed
     public static final double encoderTicks = 384.5; //might need to change (old old was 537.7)
     public static double minPos = 0.0;
+    public static double transferPos = 0.35; //posiiton for transfering sample to bucket thingy
     public static double maxPos = 5.0; //needs to be changed
     public static OpMode opmode;
     public static DcMotor.RunMode encoderMode = DcMotor.RunMode.STOP_AND_RESET_ENCODER;
@@ -26,6 +27,7 @@ public class Extension { //Prefix for commands
     }
 
     public static void updateLift() {
+
         if (opmode.gamepad2.dpad_up && !opmode.gamepad2.dpad_down) {// can change controls
             currentSpeed = speed;
         } else if (opmode.gamepad2.dpad_down && !opmode.gamepad2.dpad_up) {

@@ -7,7 +7,8 @@ public class Wrist {
     private static DcMotor wrist;
     public static final double encoderTicks = 752.8; //calculate your own ratio
     public static int[] positions = {0, 90, 180}; //positions, most forward to most backward
-    public static int initPos = 200; //innit pos prob 200-220 or so
+    public static int initPos = 210; //innit pos prob 200-220 or so
+    public static int transferPos = 225; //position for transfer, be careful with this one
     public static int currentPos = -1; //innit pos placeholder
     private static String state = "Init";
     private static boolean backwardWristButtonCurrentlyPressed = false;
