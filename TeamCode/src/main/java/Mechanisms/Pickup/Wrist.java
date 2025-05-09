@@ -9,7 +9,7 @@ public class Wrist {
     public static int[] positions = {0, 90, 180}; //positions, most forward to most backward
     public static int initPos = 210; //innit pos prob 200-220 or so
     public static int transferPos = 225; //position for transfer, be careful with this one
-    public static int currentPos = -1; //innit pos placeholder
+    public static int currentPos = -1; //-1 is transfer pos, -2 is transfer pos
     private static String state = "Init";
     private static boolean backwardWristButtonCurrentlyPressed = false;
     private static boolean backwardWristButtonPreviouslyPressed = false;
@@ -74,10 +74,11 @@ public class Wrist {
     private static void updatePosition(int targetPosition) {
         if (targetPosition == -1) {
             wrist.setTargetPosition((int) ((-encoderTicks * (-initPos + initPos)) / 360));
+        } else if (targetPosition == -2) {
+            wrist.setTargetPosition((int) ((-encoderTicks * (-transferPos + initPos)) / 360));
         } else {
             wrist.setTargetPosition((int) ((-encoderTicks * (-targetPosition + initPos)) / 360));
         }
-
         state = Integer.toString(targetPosition);
     }
 }
