@@ -75,7 +75,7 @@ public class PipeWrench {
 
     public static void updateTransfer() {
         transferButtonCurrentlyPressed = opmode.gamepad1.y; // change this to change the button
-        transferClawButtonCurrentlyPressed = opmode.gamepad1.b; // change this to change the button
+        transferClawButtonCurrentlyPressed = opmode.gamepad1.x; // change this to change the button
 
         if (transferClawButtonCurrentlyPressed && !transferClawButtonPreviouslyPressed) {
             clawSwap();
