@@ -8,7 +8,7 @@ public class Wrist {
     public static final double encoderTicks = 752.8; //calculate your own ratio
     public static int[] positions = {0, 90, 180}; //positions, most forward to most backward
     public static int initPos = 200; //innit pos prob 200-220 or so
-    public static int transferPos = 225; //position for transfer, be careful with this one
+    public static int transferPos = 210; //position for transfer, be careful with this one
     public static int currentPos = -1; //-1 is transfer pos, -2 is transfer pos
     private static String state = "Init";
     private static boolean backwardWristButtonCurrentlyPressed = false;
@@ -55,11 +55,11 @@ public class Wrist {
     }
 
     private static void changePosition(String direction) {
-        if (currentPos == -1 && direction.equals("forward")) {
+        if ((currentPos == -1 || currentPos == -2)&& direction.equals("forward")) {
             currentPos = positions.length - 1; //if inited, go to last in array
             updatePosition(positions[currentPos]);
         } else {
-            if (currentPos != -1) {
+            if ((currentPos != -1 && currentPos != -2)) {
                 if (direction.equals("forward") && positions[currentPos] != positions[0]) {
                     currentPos -= 1;
                 }
