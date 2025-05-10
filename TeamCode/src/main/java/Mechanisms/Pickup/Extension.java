@@ -61,7 +61,7 @@ public class Extension { //Prefix for commands
 
     private static void transferSequence() {
         Wrist.currentPos = -2; //placeholder value for transfer pos
-        Wrist.updatePosition(positions[currentPos])
+        Wrist.updatePosition(-2);
         Extension.pos = Extension.transferPos;
     }
 }
