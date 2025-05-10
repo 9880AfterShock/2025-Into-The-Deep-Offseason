@@ -104,10 +104,10 @@ public class BasketLift { // Prefix for commands
         if (pos < backPos + SpecimenLift.pos && PipeWrench.transfer.getPosition() > PipeWrench.inPos) { //is in inPos or outPos //to improve, should add a position for which it is safe to come down from the specilift (and if we are really going, seperatte for the specifilift and specilift mount)
             safePos = backPos;
         }
-        if (pos < inPos && lift.getCurrentPosition()/encoderTicks > inPos && PipeWrench.transfer.getPosition() == PipeWrench.outPos) {
+        if (pos < inPos && lift.getCurrentPosition()/encoderTicks > inPos && PipeWrench.transfer.getPosition() != PipeWrench.outPos) {
             safePos = inPos;
         }
-        if (pos > pickupPos && lift.getCurrentPosition()/encoderTicks < pickupPos && PipeWrench.transfer.getPosition() == PipeWrench.outPos) {
+        if (pos > pickupPos && lift.getCurrentPosition()/encoderTicks < pickupPos && PipeWrench.transfer.getPosition() != PipeWrench.outPos) {
             safePos = pickupPos;
         }
 
