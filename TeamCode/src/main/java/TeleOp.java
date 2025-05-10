@@ -84,6 +84,7 @@ public class TeleOp extends LinearOpMode {
         waitForStart();
         SpecimenSwivel.moveOut();
         PipeWrench.open();
+        PipeWrench.out();
         runtime.reset();
 
 
