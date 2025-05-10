@@ -1,5 +1,8 @@
 package Mechanisms.Pickup;
 
+import static Mechanisms.Pickup.Claw.lastDropTimestamp;
+import static Mechanisms.Scoring.BasketLift.dropDelay;
+
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
@@ -10,6 +13,7 @@ public class Wrist {
     public static int initPos = 200; //innit pos prob 200-220 or so
     public static int transferPos = 210; //position for transfer, be careful with this one
     public static int currentPos = -1; //-1 is transfer pos, -2 is transfer pos
+    public static String transferReset = "Complete";
     private static String state = "Init";
     private static boolean backwardWristButtonCurrentlyPressed = false;
     private static boolean backwardWristButtonPreviouslyPressed = false;
@@ -21,6 +25,7 @@ public class Wrist {
     public static DcMotor.RunMode motorMode = DcMotor.RunMode.RUN_TO_POSITION;
 
     public static void initWrist(OpMode opmode) {
+        transferReset = "Complete";
         currentPos = -1; //reset pos to innit, change for teleop after auto
         wrist = opmode.hardwareMap.get(DcMotor.class, "wrist"); //config name
         wrist.setTargetPosition((int) ((-encoderTicks * (-initPos + initPos)) / 360)); //might be wrong, old one had mainlift pos by mistake so it probably doesnt matter anyway
@@ -42,6 +47,14 @@ public class Wrist {
             }
         }
 
+        if (transferReset != "Complete") {
+            if (lastDropTimestamp + dropDelay < opmode.getRuntime() && lastDropTimestamp != 0.0) {
+                currentPos = 2;
+                updatePosition(positions[currentPos]);
+                transferReset = "Complete";
+            }
+        }
+
         if (state.equals(Integer.toString(positions[0])) && Math.abs(wrist.getTargetPosition() - wrist.getCurrentPosition()) < 50) {  //make sure it powers off at lowest, 50 is margin of error
             wrist.setPower(0.0);
         } else if (currentPos == -2) {
@@ -54,6 +67,7 @@ public class Wrist {
         backwardWristButtonPreviouslyPressed = backwardWristButtonCurrentlyPressed;
 
         opmode.telemetry.addData("Wrist State", state);
+        opmode.telemetry.addData("Wrist Transfer Sequence State", transferReset);
     }
 
     private static void changePosition(String direction) {
