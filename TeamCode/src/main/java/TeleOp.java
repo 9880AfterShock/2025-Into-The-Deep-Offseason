@@ -33,6 +33,8 @@
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import java.nio.channels.Pipe;
+
 import Mechanisms.DriveTrain;
 import Mechanisms.Pickup.Claw;
 import Mechanisms.Pickup.Extension;
@@ -81,6 +83,7 @@ public class TeleOp extends LinearOpMode {
         // Wait for the game to start (driver presses START)
         waitForStart();
         SpecimenSwivel.moveOut();
+        PipeWrench.open();
         runtime.reset();
 
 

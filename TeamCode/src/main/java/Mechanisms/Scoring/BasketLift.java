@@ -53,6 +53,7 @@ public class BasketLift { // Prefix for commands
         if (!((downButtonCurrentlyPressed && upButtonCurrentlyPressed) || (downButtonCurrentlyPressed && midButtonCurrentlyPressed) || (upButtonCurrentlyPressed && midButtonCurrentlyPressed) || (upButtonCurrentlyPressed && midButtonCurrentlyPressed && downButtonCurrentlyPressed))) {
             if (downButtonCurrentlyPressed && !downButtonPreviouslyPressed) {
                 pos = minPos;
+                PipeWrench.open();
             }
             if (midButtonCurrentlyPressed && !midButtonPreviouslyPressed) {
                 pos = midPos;
