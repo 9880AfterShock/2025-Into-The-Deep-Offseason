@@ -25,6 +25,9 @@ public class Claw {
     private static void open() {
         claw.setPosition(openPos);
         state = "Open";
+        if (Wrist.currentPos == -2) {
+            transfer();
+        }
     }
 
     public static void close() {
@@ -40,8 +43,7 @@ public class Claw {
         }
     }
 
-    public static void transfer() {
-        open(); //1000000000
+    private static void transfer() {
         lastDropTimestamp = opmode.getRuntime();
     }
 
