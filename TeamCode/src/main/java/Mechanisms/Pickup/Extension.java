@@ -39,6 +39,10 @@ public class Extension { //Prefix for commands
             currentSpeed = 0.0;
         }
 
+        if (transferPrepButtonCurrentlyPressed && !transferPrepButtonPreviouslyPressed) {
+            transferSequence();
+        }
+
         pos += currentSpeed;
 
         if (pos > maxPos) {
@@ -55,7 +59,7 @@ public class Extension { //Prefix for commands
         opmode.telemetry.addData("Extension target position", pos);
     }
 
-    public static void transferSequence() {
+    private static void transferSequence() {
         Wrist.currentPos = -2; //placeholder value for transfer pos
         Extension.pos = Extension.transferPos;
     }
