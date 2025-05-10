@@ -95,7 +95,7 @@ public class BasketLift { // Prefix for commands
             PipeWrench.in();
         } else if (pos > minPos) {
             PipeWrench.out();
-        } else if (lastDropTimestamp < opmode.getRuntime() + dropDelay && lastDropTimestamp != 0.0) { //make sure it was not the init/resting setup of 0.0
+        } else if (lastDropTimestamp + dropDelay < opmode.getRuntime() && lastDropTimestamp != 0.0) { //make sure it was not the init/resting setup of 0.0
             PipeWrench.in();
             if (PipeWrench.transfer.getPosition() == PipeWrench.inPos) {
                 PipeWrench.close();
