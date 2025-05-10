@@ -34,8 +34,11 @@ public class Swivel {
 
             if (Wrist.currentPos == 0 /*&& Raiser.targPos != 0*/  /*might need to change later for new mechs*/) { // might need to move to make sure it spins when the wrist goes up
                 restingState = 0.85; // for while it's down
+            } else if (Wrist.currentPos == -1) {
+                restingState = 0.85; //for while its inited
             } else {
                 restingState = 0.5;
+                }
             }
         }
         moveTo(orientation);
