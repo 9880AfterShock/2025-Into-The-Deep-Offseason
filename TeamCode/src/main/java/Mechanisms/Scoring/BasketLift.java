@@ -112,7 +112,7 @@ public class BasketLift { // Prefix for commands
             safePos = inPos;
         }
         if (pos > minPos && lift.getCurrentPosition()/encoderTicks < inPos && PipeWrench.transfer.getPosition() != PipeWrench.outPos) {
-            safePos = inPos;
+            safePos = minPos;
         }
 
     }
