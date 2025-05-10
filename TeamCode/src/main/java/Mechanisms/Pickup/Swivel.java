@@ -9,15 +9,15 @@ import static java.lang.Math.atan2;
 
 public class Swivel {
     private static Servo swivel;
-    private static double orientation = 0.85;
-    public static double restingState = 0.85;
+    private static double orientation = 0.15;
+    public static double restingState = 0.15;
 
     private static OpMode opmode;
 
     public static void initSwivel(OpMode opmode) {
         swivel = opmode.hardwareMap.get(Servo.class, "Swivel");
-        orientation = 0.85;
-        restingState = 0.85;
+        orientation = 0.15;
+        restingState = 0.15;
         Swivel.opmode = opmode;
     }
 
@@ -33,7 +33,7 @@ public class Swivel {
             orientation = abs(orientation / PI * (0.85 - 0.15) + 0.15); // boundaries are 0.85 and 0.15
 
             if (Wrist.currentPos <= 0) { //make sure that the wrist is not upright or at init/transfer poses
-                restingState = 0.85; // for while it's down
+                restingState = 0.15; // for while it's down
             } else {
                 restingState = 0.5;
             }
