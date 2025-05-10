@@ -71,7 +71,7 @@ public class Wrist {
         }
     }
 
-    private static void updatePosition(int targetPosition) {
+    public static void updatePosition(int targetPosition) {
         if (targetPosition == -1) {
             wrist.setTargetPosition((int) ((-encoderTicks * (-initPos + initPos)) / 360));
         } else if (targetPosition == -2) {
