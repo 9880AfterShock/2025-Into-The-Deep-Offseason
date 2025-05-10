@@ -33,8 +33,6 @@
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import java.nio.channels.Pipe;
-
 import Mechanisms.DriveTrain;
 import Mechanisms.Pickup.Claw;
 import Mechanisms.Pickup.Extension;
