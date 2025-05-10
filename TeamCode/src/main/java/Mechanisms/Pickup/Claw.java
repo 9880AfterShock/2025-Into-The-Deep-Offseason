@@ -18,6 +18,7 @@ public class Claw {
 
     public static void initClaw(OpMode opmode) {
         claw = opmode.hardwareMap.get(Servo.class, "Claw"); // config name
+        lastDropTimestamp = 0.0;
         Claw.opmode = opmode;
         state = "Closed";
     }
