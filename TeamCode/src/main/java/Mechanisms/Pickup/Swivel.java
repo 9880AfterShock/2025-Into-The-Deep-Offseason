@@ -9,15 +9,15 @@ import static java.lang.Math.atan2;
 
 public class Swivel {
     private static Servo swivel;
-    private static double orientation = 0.5;
-    public static double restingState = 0.5;
+    private static double orientation = 0.85;
+    public static double restingState = 0.85;
 
     private static OpMode opmode;
 
     public static void initSwivel(OpMode opmode) {
         swivel = opmode.hardwareMap.get(Servo.class, "Swivel");
-        orientation = 0.5;
-        restingState = 0.5;
+        orientation = 0.85;
+        restingState = 0.85;
         Swivel.opmode = opmode;
     }
 
@@ -32,13 +32,10 @@ public class Swivel {
             orientation = atan2(abs(opmode.gamepad2.right_stick_y), -opmode.gamepad2.right_stick_x);
             orientation = abs(orientation / PI * (0.85 - 0.15) + 0.15); // boundaries are 0.85 and 0.15
 
-            if (Wrist.currentPos == 0 /*&& Raiser.targPos != 0*/  /*might need to change later for new mechs*/) { // might need to move to make sure it spins when the wrist goes up
+            if (Wrist.currentPos <= 0) { //make sure that the wrist is not upright or at init/transfer poses
                 restingState = 0.85; // for while it's down
-            } else if (Wrist.currentPos == -1) {
-                restingState = 0.85; //for while its inited
             } else {
                 restingState = 0.5;
-                }
             }
         }
         moveTo(orientation);
