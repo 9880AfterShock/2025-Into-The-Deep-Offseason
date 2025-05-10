@@ -13,6 +13,8 @@ public class Extension { //Prefix for commands
     public static double minPos = 0.0;
     public static double transferPos = 0.35; //posiiton for transfering sample to bucket thingy
     public static double maxPos = 5.0; //needs to be changed
+    private static boolean transferPrepButtonCurrentlyPressed = false;
+    private static boolean transferPrepButtonPreviouslyPressed = false;
     public static OpMode opmode;
     public static DcMotor.RunMode encoderMode = DcMotor.RunMode.STOP_AND_RESET_ENCODER;
     public static DcMotor.RunMode motorMode = DcMotor.RunMode.RUN_TO_POSITION;
@@ -27,6 +29,7 @@ public class Extension { //Prefix for commands
     }
 
     public static void updateLift() {
+        transferPrepButtonCurrentlyPressed = opmode.gamepad2.left_trigger > 0.5; //can change controls
 
         if (opmode.gamepad2.dpad_up && !opmode.gamepad2.dpad_down) {// can change controls
             currentSpeed = speed;
@@ -45,8 +48,15 @@ public class Extension { //Prefix for commands
             pos = minPos;
         }
 
+        transferPrepButtonPreviouslyPressed = transferPrepButtonCurrentlyPressed
+
         lift.setPower(1.0);
         lift.setTargetPosition((int) (pos * encoderTicks));
         opmode.telemetry.addData("Extension target position", pos);
+    }
+
+    public static void transferSequence() {
+        Wrist.currentPos = -2; //placeholder value for transfer pos
+        Extension.pos = Extension.transferPos;
     }
 }
