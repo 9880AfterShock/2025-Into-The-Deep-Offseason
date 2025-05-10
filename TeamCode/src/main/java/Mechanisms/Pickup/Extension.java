@@ -48,7 +48,7 @@ public class Extension { //Prefix for commands
             pos = minPos;
         }
 
-        transferPrepButtonPreviouslyPressed = transferPrepButtonCurrentlyPressed
+        transferPrepButtonPreviouslyPressed = transferPrepButtonCurrentlyPressed;
 
         lift.setPower(1.0);
         lift.setTargetPosition((int) (pos * encoderTicks));
