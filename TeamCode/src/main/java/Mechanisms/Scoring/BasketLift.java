@@ -18,7 +18,7 @@ public class BasketLift { // Prefix for commands
     public static double pickupPos = 0.2; //height that it can go back in for pickup
     public static double midPos = 3.5; //for low basket
     public static double maxPos = 6.5; // need to change
-    public static double dropDelay = 0.5*1000000000; //time to wait to go in after the claw drops the sample (the multiplier for for converting to nanoseconds)
+    public static double dropDelay = 10.5*1000000000; //time to wait to go in after the claw drops the sample (the multiplier for for converting to nanoseconds)
     private static OpMode opmode; // opmode var init
     private static boolean downButtonCurrentlyPressed = false;
     private static boolean downButtonPreviouslyPressed = false;
@@ -76,6 +76,9 @@ public class BasketLift { // Prefix for commands
         lift.setTargetPosition((int) (safePos * encoderTicks));
         opmode.telemetry.addData("Basket Lift target position", pos); // Set telemetry
         opmode.telemetry.addData("Basket Lift safety position", safePos); // Set telemetry
+
+        opmode.telemetry.addData("Last Drop", lastDropTimestamp);//debugging
+
     }
 
 //    private static void checkDrop() {
@@ -92,7 +95,7 @@ public class BasketLift { // Prefix for commands
             PipeWrench.in();
         } else if (pos > minPos) {
             PipeWrench.out();
-        } else if (lastDropTimestamp + dropDelay > opmode.getRuntime() && lastDropTimestamp != 0.0) { //make sure it was not the init/resting setup of 0.0
+        } else if (lastDropTimestamp > opmode.getRuntime() + dropDelay && lastDropTimestamp != 0.0) { //make sure it was not the init/resting setup of 0.0
             PipeWrench.in();
             if (PipeWrench.transfer.getPosition() == PipeWrench.inPos) {
                 PipeWrench.close();

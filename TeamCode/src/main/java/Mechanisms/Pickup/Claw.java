@@ -9,7 +9,7 @@ public class Claw {
     private static Servo claw;
     public static double openPos = 0.98; // the positions
     public static double closePos = 0.73; // the positions // timo changed from 0.6 to 0.82 for new claw
-    public static double lastDropTimestamp = 0.0; //the last time that the claw dropped into the transfer
+    public static volatile double lastDropTimestamp = 0.0; //the last time that the claw dropped into the transfer
     private static String state = "Closed";
     private static boolean clawButtonCurrentlyPressed = false;
     private static boolean clawButtonPreviouslyPressed = false;
@@ -45,6 +45,8 @@ public class Claw {
 
     private static void transfer() {
         lastDropTimestamp = opmode.getRuntime();
+        Wrist.currentPos = 2;
+        Wrist.updatePosition(Wrist.positions[Wrist.currentPos]);
     }
 
     public static void updateClaw() {

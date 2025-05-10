@@ -44,6 +44,8 @@ public class Wrist {
 
         if (state.equals(Integer.toString(positions[0])) && Math.abs(wrist.getTargetPosition() - wrist.getCurrentPosition()) < 50) {  //make sure it powers off at lowest, 50 is margin of error
             wrist.setPower(0.0);
+        } else if (currentPos == -2) {
+            wrist.setPower(0.5); //fast for transfer
         } else {
             wrist.setPower(0.25);
         }
