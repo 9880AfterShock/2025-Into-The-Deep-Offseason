@@ -77,7 +77,7 @@ public class BasketLift { // Prefix for commands
         opmode.telemetry.addData("Basket Lift target position", pos); // Set telemetry
         opmode.telemetry.addData("Basket Lift safety position", safePos); // Set telemetry
 
-        opmode.telemetry.addData("Last Drop", lastDropTimestamp);//debugging
+        opmode.telemetry.addData("===DEBUGGING===", (lift.getCurrentPosition()/encoderTicks < inPos && PipeWrench.transfer.getPosition() != PipeWrench.outPos));
 
     }
 
