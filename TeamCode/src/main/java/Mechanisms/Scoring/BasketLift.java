@@ -13,7 +13,7 @@ public class BasketLift { // Prefix for commands
     private static double safePos = 0.0; // alternate position for holding while transfer moves
     private static final double encoderTicks = 537.7; // calculate your own ratio // negative to invert values
     public static double minPos = 0.0; // all the way down
-    public static double inPos = 1.5; //height that it can clear the transfer basket
+    public static double inPos = 2.0; //height that it can clear the transfer basket
     public static double backPos = 3.0; //height that it can clear the specimen lift
     public static double pickupPos = 0.2; //height that it can go back in for pickup
     public static double midPos = 3.5; //for low basket
