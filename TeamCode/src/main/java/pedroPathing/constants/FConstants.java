@@ -2,14 +2,25 @@ package pedroPathing.constants;
 
 import com.pedropathing.localization.Localizers;
 import com.pedropathing.follower.FollowerConstants;
+import com.pedropathing.localization.constants.OTOSConstants;
 import com.pedropathing.util.CustomFilteredPIDFCoefficients;
 import com.pedropathing.util.CustomPIDFCoefficients;
+import com.qualcomm.hardware.sparkfun.SparkFunOTOS;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 public class FConstants {
     static {
-        FollowerConstants.localizers = Localizers.THREE_WHEEL;
-
+        FollowerConstants.localizers = Localizers.OTOS;
+        OTOSConstants.useCorrectedOTOSClass = false;
+        OTOSConstants.hardwareMapName = "sensor_otos";
+        OTOSConstants.linearUnit = DistanceUnit.INCH;
+        OTOSConstants.angleUnit = AngleUnit.RADIANS;
+        OTOSConstants.offset = new SparkFunOTOS.Pose2D(0, 0, (Math.PI/2)+0.3);
+        OTOSConstants.linearScalar = 1.5;
+        OTOSConstants.angularScalar = 1.0;
         FollowerConstants.leftFrontMotorName = "leftFront";
         FollowerConstants.leftRearMotorName = "leftRear";
         FollowerConstants.rightFrontMotorName = "rightFront";
