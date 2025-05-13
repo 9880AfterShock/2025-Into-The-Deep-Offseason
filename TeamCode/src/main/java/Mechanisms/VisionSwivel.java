@@ -44,7 +44,7 @@ public class VisionSwivel {
     }
 
     public static void updateClaw() {
-        opmode.telemetry.addData("Vision Swivel State", state);
+        swivelButtonCurrentlyPressed = opmode.gamepad1.x;
         // Check the status of the button on the gamepad
         //swivelButtonCurrentlyPressed = opmode.gamepad1.{button goes here}; // change this to change the button //should be autonomous
 
@@ -52,7 +52,11 @@ public class VisionSwivel {
         if (swivelButtonCurrentlyPressed && !swivelButtonPreviouslyPressed) {
             swap();
         }
+        if (opmode.gamepad1.y) {
+            scan();
+        }
 
         swivelButtonPreviouslyPressed = swivelButtonCurrentlyPressed;
+        opmode.telemetry.addData("Vision Swivel State", state);
     }
 }
