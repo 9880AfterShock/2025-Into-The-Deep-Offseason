@@ -99,6 +99,7 @@ public class BasketLift { // Prefix for commands
             PipeWrench.in();
             if (lastDropTimestamp + dropDelay + dropDelay < opmode.getRuntime() && lastDropTimestamp != 0.0) {
                 PipeWrench.close();
+                lastDropTimestamp = 0.0; //reset lastdrop
             }
         } else {
             PipeWrench.out(); //idk if this is right //seems to be
