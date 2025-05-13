@@ -5,8 +5,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public class VisionSwivel {
     private static Servo swivel;
-    public static double initPos = 0.7; //when folded in
-    public static double visionPos = 0.7; //when at pickup
+    public static double initPos = 0.5; //when folded in
+    public static double visionPos = 0.0; //when at pickup
     public static double sweepPos = 1.0; //during auto
     public static String state = "Init";
     private static boolean swivelButtonCurrentlyPressed = false;
@@ -43,7 +43,7 @@ public class VisionSwivel {
         }
     }
 
-    public static void updateClaw() {
+    public static void updateSwivel() {
         swivelButtonCurrentlyPressed = opmode.gamepad1.x;
         // Check the status of the button on the gamepad
         //swivelButtonCurrentlyPressed = opmode.gamepad1.{button goes here}; // change this to change the button //should be autonomous

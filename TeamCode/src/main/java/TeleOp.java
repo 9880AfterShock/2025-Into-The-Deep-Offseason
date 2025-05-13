@@ -44,6 +44,7 @@ import Mechanisms.Scoring.SpecimenLift;
 import Mechanisms.Scoring.SpecimenSwivel;
 import Mechanisms.Transfer.PipeWrench;
 import Mechanisms.Transfer.Brick;
+import Mechanisms.VisionSwivel;
 import Sensors.Vision;
 
 
@@ -72,7 +73,8 @@ public class TeleOp extends LinearOpMode {
         PipeWrench.initTransfer(this);
         //Brick.initTransfer(this);
 
-        //Vision.updateVision();
+        //Vision.initVision();
+        VisionSwivel.initSwivel(this);
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
@@ -105,6 +107,7 @@ public class TeleOp extends LinearOpMode {
             //Brick.updateTransfer();
 
             //Vision.updateVision();
+            VisionSwivel.updateSwivel();
 
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.update();
