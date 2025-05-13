@@ -3,11 +3,13 @@ package Mechanisms.Transfer;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.opencv.calib3d.StereoMatcher;
+
 public class PipeWrench {
     public static Servo transfer;
     private static Servo transferClaw;
     public static double openPos = 0.7; //for transfer claw
-    public static double closePos = 0.95; //for transfer claw
+    public static double closePos = 0.925; //for transfer claw
     public static double outPos = 0.05; //for transfer
     public static double inPos = 0.12; //for transfer
     public static double backPos = 0.5; //for transfer
