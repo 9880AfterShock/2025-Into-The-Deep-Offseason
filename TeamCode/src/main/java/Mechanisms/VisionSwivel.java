@@ -51,9 +51,6 @@ public class VisionSwivel {
         if (swivelButtonCurrentlyPressed && !swivelButtonPreviouslyPressed) {
             swap();
         }
-        if (opmode.gamepad1.y) {
-            scan();
-        }
 
         swivelButtonPreviouslyPressed = swivelButtonCurrentlyPressed;
         opmode.telemetry.addData("Vision Swivel State", state);
