@@ -44,7 +44,6 @@ public class VisionSwivel {
     }
 
     public static void updateSwivel() {
-        swivelButtonCurrentlyPressed = opmode.gamepad1.x;
         // Check the status of the button on the gamepad
         //swivelButtonCurrentlyPressed = opmode.gamepad1.{button goes here}; // change this to change the button //should be autonomous
 
