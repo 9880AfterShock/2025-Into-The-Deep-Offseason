@@ -15,7 +15,7 @@ public class VisionSwivel {
     private static OpMode opmode;
 
     public static void initSwivel(OpMode opmode) {
-        swivel = opmode.hardwareMap.get(Servo.class, "Specimen Claw"); // config name
+        swivel = opmode.hardwareMap.get(Servo.class, "visionSwivel"); // config name
         VisionSwivel.opmode = opmode;
         state = "Init";
     }
