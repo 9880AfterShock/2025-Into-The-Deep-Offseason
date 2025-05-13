@@ -75,19 +75,19 @@ public class PipeWrench {
 
     public static void updateTransfer() {
         //disabled, now controled in basket lift
-//        transferButtonCurrentlyPressed = opmode.gamepad1.y; // change this to change the button
-//        transferClawButtonCurrentlyPressed = opmode.gamepad1.x; // change this to change the button
-//
-//        if (transferClawButtonCurrentlyPressed && !transferClawButtonPreviouslyPressed) {
-//            clawSwap();
-//        }
-//
+        //transferButtonCurrentlyPressed = opmode.gamepad1.y; // change this to change the button
+        transferClawButtonCurrentlyPressed = opmode.gamepad1.x; // change this to change the button
+
+        if (transferClawButtonCurrentlyPressed && !transferClawButtonPreviouslyPressed) {
+            clawSwap();
+        }
+
 //        if (transferButtonCurrentlyPressed && !transferButtonPreviouslyPressed) {
 //            transferIncrement();
 //        }
-//
-//        transferButtonPreviouslyPressed = transferButtonCurrentlyPressed;
-//        transferClawButtonPreviouslyPressed = transferClawButtonCurrentlyPressed;
+
+        transferButtonPreviouslyPressed = transferButtonCurrentlyPressed;
+        transferClawButtonPreviouslyPressed = transferClawButtonCurrentlyPressed;
 
         opmode.telemetry.addData("Transfer State", state);
         opmode.telemetry.addData("Transfer Claw State", clawState);
