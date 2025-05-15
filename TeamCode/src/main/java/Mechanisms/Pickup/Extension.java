@@ -49,7 +49,7 @@ public class Extension { //Prefix for commands
         if (pos > maxPos) {
             pos = maxPos;
         }
-        if (pos> wristUpMaxPos && Wrist.currentPos != 0 && Math.abs(Wrist.wrist.getTargetPosition() - Wrist.wrist.getCurrentPosition()) > 50) {
+        if (pos > wristUpMaxPos && !(Wrist.currentPos == 0 && Math.abs(Wrist.wrist.getTargetPosition() - Wrist.wrist.getCurrentPosition()) < 50)) {
             pos = wristUpMaxPos;
         }
         if (pos < minPos) {
@@ -65,7 +65,6 @@ public class Extension { //Prefix for commands
 
     private static void transferSequence() {
         Wrist.currentPos = -2; //placeholder value for transfer pos
-        Wrist.updatePosition(-2);
         Extension.pos = Extension.transferPos;
     }
 }

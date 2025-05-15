@@ -6,6 +6,8 @@ import static Mechanisms.Scoring.BasketLift.dropDelay;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+import java.util.Currency;
+
 public class Wrist {
     public static DcMotor wrist;
     public static final double encoderTicks = 752.8; //calculate your own ratio
@@ -50,10 +52,11 @@ public class Wrist {
         if (transferReset != "Complete") {
             if (lastDropTimestamp + dropDelay < opmode.getRuntime() && lastDropTimestamp != 0.0) {
                 currentPos = 2;
-                updatePosition(positions[currentPos]);
                 transferReset = "Complete";
             }
         }
+
+        updatePosition();
 
         if (state.equals(Integer.toString(positions[0])) && Math.abs(wrist.getTargetPosition() - wrist.getCurrentPosition()) < 50) {  //make sure it powers off at lowest, 50 is margin of error
             wrist.setPower(0.0);
@@ -77,7 +80,6 @@ public class Wrist {
 
         if ((currentPos == -1 || currentPos == -2)&& direction.equals("forward")) {
             currentPos = positions.length - 1; //if inited, go to last in array
-            updatePosition(positions[currentPos]);
         } else {
             if ((currentPos != -1 && currentPos != -2)) {
                 if (direction.equals("forward") && positions[currentPos] != positions[0]) {
@@ -86,19 +88,21 @@ public class Wrist {
                 if (direction.equals("backward") && currentPos != positions.length - 1) {
                     currentPos += 1;
                 }
-                updatePosition(positions[currentPos]);
             }
         }
     }
 
-    public static void updatePosition(int targetPosition) {
-        if (targetPosition == -1) {
+    public static void updatePosition() {
+
+        if (currentPos == -1) {
             wrist.setTargetPosition((int) ((-encoderTicks * (-initPos + initPos)) / 360));
-        } else if (targetPosition == -2) {
+            state = Integer.toString(currentPos);
+        } else if (currentPos == -2) {
             wrist.setTargetPosition((int) ((-encoderTicks * (-transferPos + initPos)) / 360));
+            state = Integer.toString(currentPos);
         } else {
-            wrist.setTargetPosition((int) ((-encoderTicks * (-targetPosition + initPos)) / 360));
+            wrist.setTargetPosition((int) ((-encoderTicks * (-positions[currentPos] + initPos)) / 360));
+            state = Integer.toString(positions[currentPos]);
         }
-        state = Integer.toString(targetPosition);
     }
 }
