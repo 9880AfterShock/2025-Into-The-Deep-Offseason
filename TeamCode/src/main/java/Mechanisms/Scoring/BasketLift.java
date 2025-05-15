@@ -17,7 +17,7 @@ public class BasketLift { // Prefix for commands
     public static double backPos = 3.0; //height that it can clear the specimen lift
     public static double pickupPos = 0.2; //height that it can go back in for pickup
     public static double midPos = 4.0; //for low basket
-    public static double maxPos = 7.0; // need to change
+    public static double maxPos = 8.1; // for high basket
     public static double dropDelay = 0.5; //time to wait to go in after the claw drops the sample
     private static OpMode opmode; // opmode var init
     private static boolean downButtonCurrentlyPressed = false;
