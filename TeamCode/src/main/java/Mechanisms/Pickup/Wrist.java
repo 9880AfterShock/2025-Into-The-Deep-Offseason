@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 public class Wrist {
-    private static DcMotor wrist;
+    public static DcMotor wrist;
     public static final double encoderTicks = 752.8; //calculate your own ratio
     public static int[] positions = {0, 90, 180}; //positions, most forward to most backward
     public static int initPos = 200; //innit pos prob 200-220 or so
@@ -71,6 +71,10 @@ public class Wrist {
     }
 
     private static void changePosition(String direction) {
+        if (currentPos == 0 && Extension.lift.getCurrentPosition()/Extension.encoderTicks > Extension.wristUpMaxPos) {
+            return;
+        } //stop from moving if you would violate the size limit
+
         if ((currentPos == -1 || currentPos == -2)&& direction.equals("forward")) {
             currentPos = positions.length - 1; //if inited, go to last in array
             updatePosition(positions[currentPos]);

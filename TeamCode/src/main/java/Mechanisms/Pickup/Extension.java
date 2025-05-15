@@ -12,6 +12,7 @@ public class Extension { //Prefix for commands
     public static final double encoderTicks = 384.5; //might need to change (old old was 537.7)
     public static double minPos = 0.0;
     public static double transferPos = 0.35; //posiiton for transfering sample to bucket thingy
+    public static double wristUpMaxPos = 4.0; //max extension when wrist is up
     public static double maxPos = 5.0; //needs to be changed
     private static boolean transferPrepButtonCurrentlyPressed = false;
     private static boolean transferPrepButtonPreviouslyPressed = false;
@@ -47,6 +48,9 @@ public class Extension { //Prefix for commands
 
         if (pos > maxPos) {
             pos = maxPos;
+        }
+        if (pos> wristUpMaxPos && Wrist.currentPos != 0 && Math.abs(Wrist.wrist.getTargetPosition() - Wrist.wrist.getCurrentPosition()) > 50) {
+            pos = wristUpMaxPos;
         }
         if (pos < minPos) {
             pos = minPos;
