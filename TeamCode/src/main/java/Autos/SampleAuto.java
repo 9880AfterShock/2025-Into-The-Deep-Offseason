@@ -19,6 +19,7 @@ import pedroPathing.constants.LConstants;
 @Autonomous(name = "1 Tile")
 public class SampleAuto extends OpMode {
 
+    private final Pose startPose = new Pose(0,72, Math.toRadians(0));
     private Follower follower;
     private PathChain tile;
 
@@ -33,6 +34,7 @@ public class SampleAuto extends OpMode {
 
     public void generatePath() {
         follower = new Follower(hardwareMap, FConstants.class, LConstants.class);
+        follower.setStartingPose(startPose);
 
         tile = follower.pathBuilder()
             .addPath(
