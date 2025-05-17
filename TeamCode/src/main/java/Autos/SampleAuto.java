@@ -16,10 +16,11 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import pedroPathing.constants.FConstants;
 import pedroPathing.constants.LConstants;
 
-@Autonomous(name = "1 Tile")
+@Autonomous(name = "1 Tile Back and Forth")
 public class SampleAuto extends OpMode {
 
     private final Pose startPose = new Pose(0,72, Math.toRadians(0));
+    private final Pose endPose = new Pose(24, 72, Math.toRadians(0));
     private Follower follower;
     private PathChain tile;
 
@@ -37,16 +38,12 @@ public class SampleAuto extends OpMode {
         follower.setStartingPose(startPose);
 
         tile = follower.pathBuilder()
-            .addPath(
-                    // Line 1
-                    new BezierLine(
-                            new Point(0.000, 72.000, Point.CARTESIAN),
-                            new Point(24.000, 72.000, Point.CARTESIAN)
-                    )
-            )
+            .addPath(new BezierLine(new Point(startPose), new Point(endPose)))
+            .setConstantHeadingInterpolation(Math.toRadians(0.0))
+            .addPath(new BezierLine(new Point(endPose), new Point(startPose)))
             .setConstantHeadingInterpolation(Math.toRadians(0.0))
             .build();
 
-        follower.followPath(tile);
+        follower.followPath(tile, true);
     }
 }
