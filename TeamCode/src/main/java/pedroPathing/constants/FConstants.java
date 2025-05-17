@@ -14,13 +14,13 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 public class FConstants {
     static {
         FollowerConstants.localizers = Localizers.OTOS;
-        OTOSConstants.useCorrectedOTOSClass = false;
-        OTOSConstants.hardwareMapName = "sensor_otos";
-        OTOSConstants.linearUnit = DistanceUnit.INCH;
-        OTOSConstants.angleUnit = AngleUnit.RADIANS;
-        OTOSConstants.offset = new SparkFunOTOS.Pose2D(0, 0, (Math.PI/2)+0.3);
-        OTOSConstants.linearScalar = 1.5;
-        OTOSConstants.angularScalar = 1.0;
+//        OTOSConstants.useCorrectedOTOSClass = false;
+//        OTOSConstants.hardwareMapName = "sensor_otos";
+//        OTOSConstants.linearUnit = DistanceUnit.INCH;
+//        OTOSConstants.angleUnit = AngleUnit.RADIANS;
+//        OTOSConstants.offset = new SparkFunOTOS.Pose2D(0, 0, (Math.PI/2)+0.3);
+//        OTOSConstants.linearScalar = 1.5;
+//        OTOSConstants.angularScalar = 1.0;
         FollowerConstants.leftFrontMotorName = "leftFront";
         FollowerConstants.leftRearMotorName = "leftRear";
         FollowerConstants.rightFrontMotorName = "rightFront";
@@ -54,7 +54,7 @@ public class FConstants {
         FollowerConstants.zeroPowerAccelerationMultiplier = 4;
         FollowerConstants.centripetalScaling = 0.0005;
 
-        FollowerConstants.pathEndTimeoutConstraint = 500;
+        FollowerConstants.pathEndTimeoutConstraint = 100;
         FollowerConstants.pathEndTValueConstraint = 0.95;
         FollowerConstants.pathEndVelocityConstraint = 0.1;
         FollowerConstants.pathEndTranslationalConstraint = 0.1;
