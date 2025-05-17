@@ -73,9 +73,9 @@ public class BasketLift { // Prefix for commands
 
         // pos += currentSpeed
         if (Math.abs(lift.getTargetPosition() - lift.getCurrentPosition()) < 30 && safePos == minPos) { //30 is margin of error
-            lift.setPower(0.0)
+            lift.setPower(0.0);
         } else {
-            lift.setPower(1.0)
+            lift.setPower(1.0);
         }
         lift.setTargetPosition((int) (safePos * encoderTicks));
         opmode.telemetry.addData("Basket Lift target position", pos); // Set telemetry
