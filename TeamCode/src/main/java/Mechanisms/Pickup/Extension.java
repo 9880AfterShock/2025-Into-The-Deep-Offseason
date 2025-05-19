@@ -17,8 +17,8 @@ public class Extension { //Prefix for commands
     public static double maxPos = 5.0; //needs to be changed
     private static boolean transferPrepButtonCurrentlyPressed = false;
     private static boolean transferPrepButtonPreviouslyPressed = false;
-    private static boolean extendPrepButtonCurrentlyPressed = false;
-    private static boolean extendPrepButtonPreviouslyPressed = false;
+    private static boolean extendButtonCurrentlyPressed = false;
+    private static boolean extendButtonPreviouslyPressed = false;
     private static boolean extended = false;
     public static OpMode opmode;
     public static DcMotor.RunMode encoderMode = DcMotor.RunMode.STOP_AND_RESET_ENCODER;
@@ -52,7 +52,9 @@ public class Extension { //Prefix for commands
             transferSequence();
         }
 
-        
+        if (extendButtonCurrentlyPressed && !extendButtonPreviouslyPressed) {
+            toggleExtend();
+        }
 
         pos += currentSpeed;
 

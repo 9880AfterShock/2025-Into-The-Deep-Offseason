@@ -23,7 +23,7 @@ public class Claw {
         state = "Closed";
     }
 
-    private static void open() {
+    public static void open() {
         claw.setPosition(openPos);
         state = "Open";
         if (Wrist.currentPos == -2) {
