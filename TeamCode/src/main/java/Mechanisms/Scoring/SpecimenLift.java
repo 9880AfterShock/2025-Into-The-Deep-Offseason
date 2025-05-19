@@ -53,8 +53,13 @@ public class SpecimenLift { // Prefix for commands
         downButtonPreviouslyPressed = downButtonCurrentlyPressed;
         upButtonPreviouslyPressed = upButtonCurrentlyPressed;
 
+        if (Math.abs(lift.getTargetPosition() - lift.getCurrentPosition()) < 30 && pos == 0.0) {
+            lift.setPower(0.0);
+        } else {
+            lift.setPower(8.0);
+        }
+
         // pos += currentSpeed
-        lift.setPower(0.7); // turn motor on
         lift.setTargetPosition((int) (pos * encoderTicks));
         opmode.telemetry.addData("Specimen Lift target position", pos); // Set telemetry
     }

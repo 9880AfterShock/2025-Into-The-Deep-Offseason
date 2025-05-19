@@ -23,7 +23,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import pedroPathing.constants.FConstants;
 import pedroPathing.constants.LConstants;
 
-@Autonomous(name = "PeePeePooPoo")
+@Autonomous(name = "Test Auto")
 public class TestAuto extends OpMode {
 
     private Follower follower;

@@ -14,13 +14,13 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 public class FConstants {
     static {
         FollowerConstants.localizers = Localizers.OTOS;
-        OTOSConstants.useCorrectedOTOSClass = false;
-        OTOSConstants.hardwareMapName = "sensor_otos";
-        OTOSConstants.linearUnit = DistanceUnit.INCH;
-        OTOSConstants.angleUnit = AngleUnit.RADIANS;
-        OTOSConstants.offset = new SparkFunOTOS.Pose2D(0, 0, (Math.PI/2)+0.3);
-        OTOSConstants.linearScalar = 1.5;
-        OTOSConstants.angularScalar = 1.0;
+//        OTOSConstants.useCorrectedOTOSClass = false;
+//        OTOSConstants.hardwareMapName = "sensor_otos";
+//        OTOSConstants.linearUnit = DistanceUnit.INCH;
+//        OTOSConstants.angleUnit = AngleUnit.RADIANS;
+//        OTOSConstants.offset = new SparkFunOTOS.Pose2D(0, 0, (Math.PI/2)+0.3);
+//        OTOSConstants.linearScalar = 1.5;
+//        OTOSConstants.angularScalar = 1.0;
         FollowerConstants.leftFrontMotorName = "leftFront";
         FollowerConstants.leftRearMotorName = "leftRear";
         FollowerConstants.rightFrontMotorName = "rightFront";
@@ -31,12 +31,12 @@ public class FConstants {
         FollowerConstants.rightFrontMotorDirection = DcMotorSimple.Direction.FORWARD;
         FollowerConstants.rightRearMotorDirection = DcMotorSimple.Direction.FORWARD;
 
-        FollowerConstants.mass = 13;
+        FollowerConstants.mass = 12;
 
-        FollowerConstants.xMovement = 57.8741;
+        FollowerConstants.xMovement = 53.805493933009358;
         FollowerConstants.yMovement = 52.295;
 
-        FollowerConstants.forwardZeroPowerAcceleration = -41.278;
+        FollowerConstants.forwardZeroPowerAcceleration = -28.375848057567966;
         FollowerConstants.lateralZeroPowerAcceleration = -59.7819;
 
         FollowerConstants.translationalPIDFCoefficients.setCoefficients(0.1,0,0.01,0);
@@ -54,7 +54,7 @@ public class FConstants {
         FollowerConstants.zeroPowerAccelerationMultiplier = 4;
         FollowerConstants.centripetalScaling = 0.0005;
 
-        FollowerConstants.pathEndTimeoutConstraint = 500;
+        FollowerConstants.pathEndTimeoutConstraint = 100;
         FollowerConstants.pathEndTValueConstraint = 0.95;
         FollowerConstants.pathEndVelocityConstraint = 0.1;
         FollowerConstants.pathEndTranslationalConstraint = 0.1;
