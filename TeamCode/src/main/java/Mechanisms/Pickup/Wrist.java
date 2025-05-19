@@ -98,8 +98,10 @@ public class Wrist {
             wrist.setTargetPosition((int) ((-encoderTicks * (-initPos + initPos)) / 360));
             state = Integer.toString(currentPos);
         } else if (currentPos == -2) {
-            wrist.setTargetPosition((int) ((-encoderTicks * (-transferPos + initPos)) / 360));
-            state = Integer.toString(currentPos);
+            if (!Extension.lift.getCurrentPosition()/Extension.encoderTicks > Extension.wristUpMaxPos) {
+                wrist.setTargetPosition((int) ((-encoderTicks * (-transferPos + initPos)) / 360));
+                state = Integer.toString(currentPos);
+            }
         } else {
             wrist.setTargetPosition((int) ((-encoderTicks * (-positions[currentPos] + initPos)) / 360));
             state = Integer.toString(positions[currentPos]);
