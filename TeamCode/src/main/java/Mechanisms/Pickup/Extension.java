@@ -84,10 +84,10 @@ public class Extension { //Prefix for commands
         if (extended) {
             pos = transferPos;
             Wrist.currentpos = Wrist.positions[1];
-            Claw.open();
         } else {
             pos = extendPos;
             Wrist.currentpos = Wrist.positions[0];
+            Claw.open();
         }
         extended = !extended;
     }
