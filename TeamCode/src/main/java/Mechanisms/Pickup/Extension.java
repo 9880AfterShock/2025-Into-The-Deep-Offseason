@@ -83,10 +83,10 @@ public class Extension { //Prefix for commands
     private static void toggleExtend() {
         if (extended) {
             pos = transferPos;
-            Wrist.currentpos = Wrist.positions[1];
+            Wrist.changePosition("backward");
         } else {
             pos = extendPos;
-            Wrist.currentpos = Wrist.positions[0];
+            Wrist.changePosition("forward");
             Claw.open();
         }
         extended = !extended;
