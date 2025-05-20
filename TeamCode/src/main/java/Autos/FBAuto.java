@@ -20,7 +20,7 @@ import pedroPathing.constants.LConstants;
 public class FBAuto extends OpMode {
 
     private final Pose startPose = new Pose(0,72, Math.toRadians(0));
-    private final Pose endPose = new Pose(25, 72, Math.toRadians(0));
+    private final Pose endPose = new Pose(24, 72, Math.toRadians(0));
 
     private Follower follower;
     private PathChain fowardOneTile;
