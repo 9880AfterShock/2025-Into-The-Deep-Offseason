@@ -12,9 +12,11 @@ public class Extension { //Prefix for commands
     public static final double encoderTicks = 384.5; //might need to change (old old was 537.7)
     public static double minPos = 0.0;
     public static double transferPos = 0.35; //posiiton for transfering sample to bucket thingy, as well as autoretract
+    public static double dropPos = 3.0; //position to drop sample when auto extending
     public static double extendPos = 3.5; //position for when you autoextend
     public static double wristUpMaxPos = 4.0; //max extension when wrist is up
     public static double maxPos = 5.0; //needs to be changed
+    public static boolean dropped = true; //if it has dropped after using auto extend
     private static boolean transferPrepButtonCurrentlyPressed = false;
     private static boolean transferPrepButtonPreviouslyPressed = false;
     private static boolean extendButtonCurrentlyPressed = false;
@@ -71,6 +73,11 @@ public class Extension { //Prefix for commands
         transferPrepButtonPreviouslyPressed = transferPrepButtonCurrentlyPressed;
         extendButtonPreviouslyPressed = extendButtonCurrentlyPressed;
 
+        if (!dropped && lift.getCurrentPosition()/encoderTicks >= dropPos) {
+            Claw.open();
+            dropped = false;
+        }
+
         lift.setPower(1.0);
         lift.setTargetPosition((int) (pos * encoderTicks));
         opmode.telemetry.addData("Extension target position", pos);
@@ -89,7 +96,7 @@ public class Extension { //Prefix for commands
         } else {
             pos = extendPos;
             Wrist.changePosition("forward");
-            Claw.open();
+            dropped = false;
         }
         extended = !extended;
     }

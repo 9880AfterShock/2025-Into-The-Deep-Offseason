@@ -16,11 +16,11 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import pedroPathing.constants.FConstants;
 import pedroPathing.constants.LConstants;
 
-@Autonomous(name = "1 Tile Back and Forth")
+@Autonomous(name = "1 Tile left and right")
 public class SampleAuto extends OpMode {
 
     private final Pose startPose = new Pose(0,72, Math.toRadians(0));
-    private final Pose endPose = new Pose(24, 72, Math.toRadians(0));
+    private final Pose endPose = new Pose(0, 72+24, Math.toRadians(0));
 
     private Follower follower;
     private PathChain fowardOneTile;
