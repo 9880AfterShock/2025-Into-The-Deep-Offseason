@@ -15,7 +15,7 @@ import pedroPathing.AftershockOTOSLocalizer;
 import pedroPathing.constants.FConstants;
 import pedroPathing.constants.LConstants;
 
-@Autonomous(name = "1 Tile left and right")
+@Autonomous(name = "1 Tile left and right") //going about 2-2.5 tiles
 public class LRAuto extends OpMode {
 
     private final Pose startPose = new Pose(0,72, Math.toRadians(0));
