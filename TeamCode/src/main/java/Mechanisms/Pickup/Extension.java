@@ -52,7 +52,9 @@ public class Extension { //Prefix for commands
             transferSequence();
         }
 
-        
+        if (extendButtonCurrentlyPressed && !extendButtonPreviouslyPressed) {
+            toggleExtend();
+        }
 
         pos += currentSpeed;
 
