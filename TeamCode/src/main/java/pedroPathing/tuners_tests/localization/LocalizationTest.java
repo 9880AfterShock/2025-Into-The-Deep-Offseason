@@ -27,6 +27,7 @@ import com.pedropathing.util.Drawing;
 import java.util.Arrays;
 import java.util.List;
 
+import pedroPathing.AftershockOTOSLocalizer;
 import pedroPathing.constants.*;
 
 /**
@@ -56,7 +57,7 @@ public class LocalizationTest extends OpMode {
     @Override
     public void init() {
         Constants.setConstants(FConstants.class, LConstants.class);
-        poseUpdater = new PoseUpdater(hardwareMap, FConstants.class, LConstants.class);
+        poseUpdater = new PoseUpdater(hardwareMap, new AftershockOTOSLocalizer(hardwareMap), FConstants.class, LConstants.class);
 
         dashboardPoseTracker = new DashboardPoseTracker(poseUpdater);
 
