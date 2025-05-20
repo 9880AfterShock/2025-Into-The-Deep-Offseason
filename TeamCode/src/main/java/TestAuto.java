@@ -83,7 +83,7 @@ public class TestAuto extends OpMode {
             case 1: // Wait until the robot is near the scoring position
                 if (!follower.isBusy()) {
                     follower.followPath(line2);
-                    pathState = 0;
+                    //pathState = 0;
                 }
                 break;
         }
