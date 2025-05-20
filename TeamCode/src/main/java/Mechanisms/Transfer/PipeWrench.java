@@ -11,7 +11,7 @@ public class PipeWrench {
     public static double openPos = 0.7; //for transfer claw
     public static double closePos = 0.925; //for transfer claw
     public static double outPos = 0.05; //for transfer
-    public static double inPos = 0.12; //for transfer
+    public static double inPos = 0.15; //for transfer
     public static double backPos = 0.5; //for transfer
     private static String clawState = "Closed";
     private static String state = "In";
