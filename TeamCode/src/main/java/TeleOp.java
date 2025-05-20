@@ -73,7 +73,7 @@ public class TeleOp extends LinearOpMode {
         PipeWrench.initTransfer(this);
         //Brick.initTransfer(this);
 
-        //Vision.initVision();
+        Vision.initVision(this);
         VisionSwivel.initSwivel(this);
 
         telemetry.addData("Status", "Initialized");
@@ -83,6 +83,7 @@ public class TeleOp extends LinearOpMode {
         // Wait for the game to start (driver presses START)
         waitForStart();
         SpecimenSwivel.moveOut();
+        VisionSwivel.vision();
         PipeWrench.open();
         PipeWrench.out();
         runtime.reset();
@@ -106,8 +107,8 @@ public class TeleOp extends LinearOpMode {
             PipeWrench.updateTransfer();
             //Brick.updateTransfer();
 
-            //Vision.updateVision();
-            VisionSwivel.updateSwivel();
+            Vision.updateVision();
+            //VisionSwivel.updateSwivel();
 
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.update();

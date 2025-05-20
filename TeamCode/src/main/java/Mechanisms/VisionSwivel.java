@@ -25,7 +25,7 @@ public class VisionSwivel {
         state = "Init";
     }
 
-    private static void vision() {
+    public static void vision() {
         swivel.setPosition(visionPos);
         state = "Vision";
     }
