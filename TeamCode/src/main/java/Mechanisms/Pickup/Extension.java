@@ -76,7 +76,7 @@ public class Extension { //Prefix for commands
 
         if (!dropped && lift.getCurrentPosition()/encoderTicks >= dropPos) {
             Claw.open();
-            dropped = false;
+            dropped = true;
         }
 
         lift.setPower(1.0);
