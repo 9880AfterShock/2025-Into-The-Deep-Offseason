@@ -30,7 +30,7 @@ public class Swivel {
             orientation = restingState;
         } else {
             orientation = atan2(abs(opmode.gamepad2.right_stick_y), -opmode.gamepad2.right_stick_x);
-            orientation = abs(orientation / PI * (0.85 - 0.15) + 0.15 - 90.0); // boundaries are 0.85 and 0.15 //add -90 for new wrist rotation, might need to be +90
+            orientation = abs(orientation / PI * (0.85 - 0.15) + 0.15); // boundaries are 0.85 and 0.15
 
             if (Wrist.currentPos <= 0) { //make sure that the wrist is not upright or at init/transfer poses
                 restingState = 0.15; // for while it's down
