@@ -20,7 +20,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import pedroPathing.constants.FConstants;
 import pedroPathing.constants.LConstants;
 
-@Autonomous(name = "caden test auto")
+@Autonomous(name = "caden test auto") //visualizer shows it dramaticly slowing down partway through
 public class TestAuto extends OpMode {
 
     private Telemetry telemetryA;
