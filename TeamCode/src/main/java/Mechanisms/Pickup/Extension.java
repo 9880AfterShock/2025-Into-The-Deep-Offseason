@@ -29,6 +29,7 @@ public class Extension { //Prefix for commands
     public static void initLift(OpMode opmode) {
         pos = 0.0;
         extended = false;
+        dropped = true;
         lift = opmode.hardwareMap.get(DcMotorEx.class, "extension"); //config name
         lift.setTargetPosition((int) (pos * encoderTicks));
         lift.setMode(encoderMode); //reset encoder
