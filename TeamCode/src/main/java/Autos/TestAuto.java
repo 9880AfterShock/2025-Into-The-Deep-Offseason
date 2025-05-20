@@ -20,7 +20,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import pedroPathing.constants.FConstants;
 import pedroPathing.constants.LConstants;
 
-@Autonomous(name = "ts ass (Auto)")
+@Autonomous(name = "caden test auto")
 public class TestAuto extends OpMode {
 
     private Telemetry telemetryA;
