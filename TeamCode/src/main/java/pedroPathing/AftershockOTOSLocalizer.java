@@ -53,14 +53,14 @@ public class AftershockOTOSLocalizer extends Localizer {
     }
 
     public Pose getPose() {
-        Pose pose = new Pose(this.otosPose.x * ExtraOtosConstants.X_MULTIPLIER, this.otosPose.y * ExtraOtosConstants.Y_MULTIPLIER, this.otosPose.h);
+        Pose pose = new Pose(this.otosPose.x, this.otosPose.y, this.otosPose.h);
         Vector vec = pose.getVector();
         vec.rotateVector(this.startPose.getHeading());
         return MathFunctions.addPoses(this.startPose, new Pose(vec.getXComponent(), vec.getYComponent(), pose.getHeading()));
     }
 
     public Pose getVelocity() {
-        return new Pose(this.otosVel.x * ExtraOtosConstants.X_VEL_MULTIPLIER, this.otosVel.y * ExtraOtosConstants.Y_VEL_MULTIPLIER, this.otosVel.h);
+        return new Pose(this.otosVel.x, this.otosVel.y, this.otosVel.h);
     }
 
     public Vector getVelocityVector() {
@@ -79,6 +79,10 @@ public class AftershockOTOSLocalizer extends Localizer {
 
     public void update() {
         this.otos.getPosVelAcc(this.otosPose, this.otosVel, this.otosAcc);
+        otosPose.x *= ExtraOtosConstants.X_MULTIPLIER;
+        otosPose.y *= ExtraOtosConstants.Y_MULTIPLIER;
+        otosVel.x *= ExtraOtosConstants.X_VEL_MULTIPLIER;
+        otosVel.y *= ExtraOtosConstants.Y_VEL_MULTIPLIER;
         this.totalHeading += MathFunctions.getSmallestAngleDifference(this.otosPose.h, this.previousHeading);
         this.previousHeading = this.otosPose.h;
     }
