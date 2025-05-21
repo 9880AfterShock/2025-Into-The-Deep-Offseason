@@ -1,8 +1,10 @@
 package Mechanisms;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.Servo;
 
+@Config
 public class VisionSwivel {
     private static Servo swivel;
     public static double initPos = 0.5; //when folded in
