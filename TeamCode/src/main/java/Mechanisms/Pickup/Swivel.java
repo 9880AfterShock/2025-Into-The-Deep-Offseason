@@ -41,5 +41,6 @@ public class Swivel {
         moveTo(orientation);
 
         opmode.telemetry.addData("Claw Swivel Position", orientation);
+        opmode.telemetry.addData("Claw Swivel 'Resting State' Position", restingState);
     }
 }
