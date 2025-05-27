@@ -145,7 +145,7 @@ public class Vision { //Prefix for commands
         if (alignSwivelButtonCurrentlyPressed && !alignSwivelButtonPreviouslyPressed) {
             pointsOverTime = new int[0];
             if (!allBlobs.isEmpty()) {
-                Swivel.restingState = 7.0 / 1800.0 * (degreeAngle + 270 % 180) + 0.15;  //add -90 (now +270) for new wrist rotation, might need to be +90
+                Swivel.restingState = 7.0 / 1800.0 * ((degreeAngle + 270) % 180) + 0.15;  //add -90 (now +270) for new wrist rotation, might need to be +90
                 //Swivel.restingState = 7.0/1800.0*(allBlobs.get(0).boxFit.angle%180.0)+0.15 //box of best fit
 //                Swivel.restingState = 7.0/1800.0*((Math.atan(calculateSlope(((ColorBlobLocatorProcessor.Blob)allBlobs.get(0)).contourPoints))*180/Math.PI)%180.0)+0.15 //line of best fit of all points
 
