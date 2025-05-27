@@ -28,7 +28,7 @@ public class Swivel {
     public static void updateSwivel() {
         if ((opmode.gamepad2.right_stick_y == 0.0 && opmode.gamepad2.right_stick_x == 0.0) || Wrist.currentPos != 0) {
             if (Wrist.currentPos == -2) {
-                restingState = 0.5;
+                restingState = 0.15;
             }
             orientation = restingState;
         } else {

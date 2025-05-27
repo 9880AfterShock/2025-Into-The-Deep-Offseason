@@ -94,6 +94,7 @@ public class Extension { //Prefix for commands
         if (extended) {
             pos = transferPos;
             Wrist.changePosition("backward");
+            Swivel.restingState = 0.15;
         } else {
             pos = extendPos;
             Wrist.changePosition("forward");
