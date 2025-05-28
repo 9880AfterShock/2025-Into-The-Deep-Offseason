@@ -184,7 +184,7 @@ public class TimeAuto2 extends LinearOpMode {
         backLeftDrive.setPower(-FORWARD_SPEED);
         backRightDrive.setPower(FORWARD_SPEED);
 
-        while (opModeIsActive() && (runtime.seconds() < 2.3)) {
+        while (opModeIsActive() && (runtime.seconds() < x)) {
             sleep(10);
         }
 
