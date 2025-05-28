@@ -77,7 +77,7 @@ public class TimeAuto2 extends LinearOpMode {
         backLeftDrive.setPower(-FORWARD_SPEED);
         backRightDrive.setPower(FORWARD_SPEED);
 
-        while (opModeIsActive() && (runtime.seconds() < 2.035)) {
+        while (opModeIsActive() && (runtime.seconds() < 2.15)) {
             sleep(10);
         }
 
@@ -100,7 +100,7 @@ public class TimeAuto2 extends LinearOpMode {
         frontRightDrive.setPower(FORWARD_SPEED);
         backLeftDrive.setPower(FORWARD_SPEED);
         backRightDrive.setPower(-FORWARD_SPEED);
-        while (opModeIsActive() && (runtime.seconds() < 3.3)) {
+        while (opModeIsActive() && (runtime.seconds() < 3.4)) {
             sleep(10);
         }
 
@@ -121,7 +121,7 @@ public class TimeAuto2 extends LinearOpMode {
         backLeftDrive.setPower(-PICKUP_SPEED);
         backRightDrive.setPower(PICKUP_SPEED);
 
-        while (opModeIsActive() && runtime.seconds() < 0.4) {
+        while (opModeIsActive() && runtime.seconds() < 0.5) {
             sleep(10);
         }
 
@@ -154,7 +154,7 @@ public class TimeAuto2 extends LinearOpMode {
         backLeftDrive.setPower(PICKUP_SPEED);
         backRightDrive.setPower(-PICKUP_SPEED);
 
-        while (opModeIsActive() && runtime.seconds() < 0.4) {
+        while (opModeIsActive() && runtime.seconds() < 0.5) {
             sleep(10);
         }
 
@@ -163,7 +163,7 @@ public class TimeAuto2 extends LinearOpMode {
         backLeftDrive.setPower(-FORWARD_SPEED);
         backRightDrive.setPower(-FORWARD_SPEED);
 
-        while (opModeIsActive() && runtime.seconds() < 1.7) {
+        while (opModeIsActive() && runtime.seconds() < 1.8) {
             sleep(10);
         }
 
@@ -176,7 +176,6 @@ public class TimeAuto2 extends LinearOpMode {
             sleep(1);
         }
         runtime.reset();
-        double x = 1.1;
 
         //move to bar
         frontLeftDrive.setPower(FORWARD_SPEED);
@@ -184,7 +183,7 @@ public class TimeAuto2 extends LinearOpMode {
         backLeftDrive.setPower(-FORWARD_SPEED);
         backRightDrive.setPower(FORWARD_SPEED);
 
-        while (opModeIsActive() && (runtime.seconds() < x)) {
+        while (opModeIsActive() && (runtime.seconds() < 1.5)) {
             sleep(10);
         }
 
@@ -206,7 +205,7 @@ public class TimeAuto2 extends LinearOpMode {
         frontRightDrive.setPower(FORWARD_SPEED);
         backLeftDrive.setPower(FORWARD_SPEED);
         backRightDrive.setPower(-FORWARD_SPEED);
-        while (opModeIsActive() && (runtime.seconds() < x+1.3)) {
+        while (opModeIsActive() && (runtime.seconds() < 2.8)) {
             sleep(10);
         }
 
@@ -217,7 +216,7 @@ public class TimeAuto2 extends LinearOpMode {
         frontRightDrive.setPower(-FORWARD_SPEED);
         backLeftDrive.setPower(-FORWARD_SPEED);
         backRightDrive.setPower(-FORWARD_SPEED);
-        while (opModeIsActive() && (runtime.seconds() < x+1.3+1.3)) {
+        while (opModeIsActive() && (runtime.seconds() < 4.1)) {
             sleep(10);
         }
 
