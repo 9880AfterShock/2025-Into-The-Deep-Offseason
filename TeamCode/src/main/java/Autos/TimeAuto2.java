@@ -1,11 +1,18 @@
 package Autos;
 
+import static java.lang.Math.abs;
+
+import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
+
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 
 //@Disabled
 @Autonomous(name="Time Auto 2 Spec + Park")
@@ -15,9 +22,11 @@ public class TimeAuto2 extends LinearOpMode {
     private DcMotor backLeftDrive   = null;
     private DcMotor backRightDrive  = null;
     Servo swivel;
+    IMU imu;
     private DcMotor specimenLift = null;
     Servo specimenClaw;
     static final double FORWARD_SPEED = 0.6;
+    static final double PICKUP_SPEED = 0.2;
     static final double STOP_SPEED = 0.0;
     public static double outPos = 0.93; // for swivel
     public static double inPos = 0.7; // for swivel
@@ -33,6 +42,12 @@ public class TimeAuto2 extends LinearOpMode {
         swivel = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "Specimen Swivel");
         specimenLift = hardwareMap.get(DcMotor.class, "specimenLift");
         specimenClaw = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "Specimen Claw");
+        imu = hardwareMap.get(IMU.class, "imu");
+
+        RevHubOrientationOnRobot.LogoFacingDirection logoDirection = RevHubOrientationOnRobot.LogoFacingDirection.UP;
+        RevHubOrientationOnRobot.UsbFacingDirection  usbDirection  = RevHubOrientationOnRobot.UsbFacingDirection.LEFT;
+        RevHubOrientationOnRobot orientationOnRobot = new RevHubOrientationOnRobot(logoDirection, usbDirection);
+        imu.initialize(new IMU.Parameters(orientationOnRobot));
 
         frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         frontRightDrive.setDirection(DcMotor.Direction.FORWARD);
@@ -60,6 +75,7 @@ public class TimeAuto2 extends LinearOpMode {
         frontRightDrive.setPower(-FORWARD_SPEED);
         backLeftDrive.setPower(-FORWARD_SPEED);
         backRightDrive.setPower(FORWARD_SPEED);
+
         while (opModeIsActive() && (runtime.seconds() < 2.035)) {
             sleep(10);
         }
@@ -88,12 +104,32 @@ public class TimeAuto2 extends LinearOpMode {
         }
 
         //spin
+        imu.resetYaw();
+        YawPitchRollAngles orientation = imu.getRobotYawPitchRollAngles();
+        frontLeftDrive.setPower(FORWARD_SPEED);
+        frontRightDrive.setPower(-FORWARD_SPEED);
+        backLeftDrive.setPower(FORWARD_SPEED);
+        backRightDrive.setPower(-FORWARD_SPEED);
+        while (opModeIsActive() && (90 > orientation.getYaw(AngleUnit.DEGREES))) {
+            sleep(1);
+        }
 
 
         //pickup
+        specimenClaw.setPosition(closePos);
+        specimenLift.setTargetPosition((int)(3.5*-537.7));
 
 
         //spin back
+        orientation = imu.getRobotYawPitchRollAngles();
+        frontLeftDrive.setPower(-FORWARD_SPEED);
+        frontRightDrive.setPower(FORWARD_SPEED);
+        backLeftDrive.setPower(-FORWARD_SPEED);
+        backRightDrive.setPower(FORWARD_SPEED);
+        while (opModeIsActive() && (0 < orientation.getYaw(AngleUnit.DEGREES))) {
+            sleep(1);
+        }
+
 
 
         //park
