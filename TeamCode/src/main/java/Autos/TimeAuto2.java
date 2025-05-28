@@ -176,7 +176,7 @@ public class TimeAuto2 extends LinearOpMode {
             sleep(1);
         }
         runtime.reset();
-        double x = 1.3;
+        double x = 1.1;
 
         //move to bar
         frontLeftDrive.setPower(FORWARD_SPEED);
