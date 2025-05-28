@@ -71,8 +71,6 @@ public class TimeAuto extends LinearOpMode {
         backRightDrive.setPower(STOP_SPEED);
         while (opModeIsActive() && specimenLift.getCurrentPosition() > (int)3.4*-537.7) {
             sleep(10);
-            telemetry.addData("specilift", specimenLift.getCurrentPosition());
-            telemetry.update();
         }
         specimenLift.setTargetPosition(0);
         while (opModeIsActive() && specimenLift.getCurrentPosition() < (int)(2.9*-537.7)) {
