@@ -60,6 +60,7 @@ public class TimeAuto2 extends LinearOpMode {
 
         waitForStart();
         runtime.reset();
+        imu.resetYaw();
 
         //extend
         swivel.setPosition(outPos);
@@ -104,30 +105,109 @@ public class TimeAuto2 extends LinearOpMode {
         }
 
         //spin
-        imu.resetYaw();
-        YawPitchRollAngles orientation = imu.getRobotYawPitchRollAngles();
         frontLeftDrive.setPower(FORWARD_SPEED);
         frontRightDrive.setPower(-FORWARD_SPEED);
         backLeftDrive.setPower(FORWARD_SPEED);
         backRightDrive.setPower(-FORWARD_SPEED);
-        while (opModeIsActive() && (90 > orientation.getYaw(AngleUnit.DEGREES))) {
+        while (opModeIsActive() && (10 < abs(abs(imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.DEGREES))-180))) {
             sleep(1);
         }
 
 
+        //go to pickup
+        runtime.reset();
+        frontLeftDrive.setPower(PICKUP_SPEED);
+        frontRightDrive.setPower(-PICKUP_SPEED);
+        backLeftDrive.setPower(-PICKUP_SPEED);
+        backRightDrive.setPower(PICKUP_SPEED);
+
+        while (opModeIsActive() && runtime.seconds() < 0.4) {
+            sleep(10);
+        }
+
+        frontLeftDrive.setPower(FORWARD_SPEED);
+        frontRightDrive.setPower(FORWARD_SPEED);
+        backLeftDrive.setPower(FORWARD_SPEED);
+        backRightDrive.setPower(FORWARD_SPEED);
+
+        while (opModeIsActive() && runtime.seconds() < 1.7) {
+            sleep(10);
+        }
+        frontLeftDrive.setPower(STOP_SPEED);
+        frontRightDrive.setPower(STOP_SPEED);
+        backLeftDrive.setPower(STOP_SPEED);
+        backRightDrive.setPower(STOP_SPEED);
+
         //pickup
+
+        sleep(300);
         specimenClaw.setPosition(closePos);
+        sleep(300);
         specimenLift.setTargetPosition((int)(3.5*-537.7));
 
+        sleep(500);
+
+        //move away from pickup
+        runtime.reset();
+        frontLeftDrive.setPower(-PICKUP_SPEED);
+        frontRightDrive.setPower(PICKUP_SPEED);
+        backLeftDrive.setPower(PICKUP_SPEED);
+        backRightDrive.setPower(-PICKUP_SPEED);
+
+        while (opModeIsActive() && runtime.seconds() < 0.4) {
+            sleep(10);
+        }
+
+        frontLeftDrive.setPower(-FORWARD_SPEED);
+        frontRightDrive.setPower(-FORWARD_SPEED);
+        backLeftDrive.setPower(-FORWARD_SPEED);
+        backRightDrive.setPower(-FORWARD_SPEED);
+
+        while (opModeIsActive() && runtime.seconds() < 1.7) {
+            sleep(10);
+        }
 
         //spin back
-        orientation = imu.getRobotYawPitchRollAngles();
         frontLeftDrive.setPower(-FORWARD_SPEED);
         frontRightDrive.setPower(FORWARD_SPEED);
         backLeftDrive.setPower(-FORWARD_SPEED);
         backRightDrive.setPower(FORWARD_SPEED);
-        while (opModeIsActive() && (0 < orientation.getYaw(AngleUnit.DEGREES))) {
+        while (opModeIsActive() && (10 < abs(abs(imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.DEGREES))))) {
             sleep(1);
+        }
+        runtime.reset();
+        double x = 1.3;
+
+        //move to bar
+        frontLeftDrive.setPower(FORWARD_SPEED);
+        frontRightDrive.setPower(-FORWARD_SPEED);
+        backLeftDrive.setPower(-FORWARD_SPEED);
+        backRightDrive.setPower(FORWARD_SPEED);
+
+        while (opModeIsActive() && (runtime.seconds() < 2.3)) {
+            sleep(10);
+        }
+
+        //stop and score
+        frontLeftDrive.setPower(STOP_SPEED);
+        frontRightDrive.setPower(STOP_SPEED);
+        backLeftDrive.setPower(STOP_SPEED);
+        backRightDrive.setPower(STOP_SPEED);
+        while (opModeIsActive() && specimenLift.getCurrentPosition() > (int)3.4*-537.7) {
+            sleep(10);
+        }
+        specimenLift.setTargetPosition(0);
+        while (opModeIsActive() && specimenLift.getCurrentPosition() < (int)(2.9*-537.7)) {
+            sleep(10);
+        }
+        specimenClaw.setPosition(openPos);
+
+        frontLeftDrive.setPower(-FORWARD_SPEED);
+        frontRightDrive.setPower(FORWARD_SPEED);
+        backLeftDrive.setPower(FORWARD_SPEED);
+        backRightDrive.setPower(-FORWARD_SPEED);
+        while (opModeIsActive() && (runtime.seconds() < x+1.3)) {
+            sleep(10);
         }
 
 
@@ -137,7 +217,7 @@ public class TimeAuto2 extends LinearOpMode {
         frontRightDrive.setPower(-FORWARD_SPEED);
         backLeftDrive.setPower(-FORWARD_SPEED);
         backRightDrive.setPower(-FORWARD_SPEED);
-        while (opModeIsActive() && (runtime.seconds() < 4.6)) {
+        while (opModeIsActive() && (runtime.seconds() < x+1.3+1.3)) {
             sleep(10);
         }
 
