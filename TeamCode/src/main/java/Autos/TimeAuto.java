@@ -19,6 +19,10 @@ public class TimeAuto extends LinearOpMode {
     Servo specimenClaw;
     static final double FORWARD_SPEED = 0.6;
     static final double STOP_SPEED = 0.0;
+    public static double outPos = 0.93; // for swivel
+    public static double inPos = 0.7; // for swivel
+    public static double openPos = 0.7; // for specimen claw
+    public static double closePos = 1.0; // for specimen claw
     private ElapsedTime runtime = new ElapsedTime();
     @Override
     public void runOpMode() {
@@ -29,20 +33,29 @@ public class TimeAuto extends LinearOpMode {
         swivel = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "Specimen Swivel");
         specimenLift = hardwareMap.get(DcMotor.class, "specimenLift");
         specimenClaw = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "Specimen Claw");
+
         frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         frontRightDrive.setDirection(DcMotor.Direction.FORWARD);
         backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         backRightDrive.setDirection(DcMotor.Direction.FORWARD);
+
         specimenLift.setTargetPosition(0);
+        specimenLift.setPower(0.0);
         specimenLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
         waitForStart();
         runtime.reset();
-        swivel.setPosition(1.0);
-        specimenClaw.setPosition(1.0);
+
+        //extend
+        swivel.setPosition(outPos);
+        specimenClaw.setPosition(closePos);
         sleep(300);
         specimenLift.setTargetPosition((int)(3.5*-537.7));
         specimenLift.setPower(1.0);
+
         sleep(500);
+
+        //move to bar
         frontLeftDrive.setPower(FORWARD_SPEED);
         frontRightDrive.setPower(-FORWARD_SPEED);
         backLeftDrive.setPower(-FORWARD_SPEED);
@@ -50,7 +63,8 @@ public class TimeAuto extends LinearOpMode {
         while (opModeIsActive() && (runtime.seconds() < 2.035)) {
             sleep(10);
         }
-// tpp
+
+        //stop and score
         frontLeftDrive.setPower(STOP_SPEED);
         frontRightDrive.setPower(STOP_SPEED);
         backLeftDrive.setPower(STOP_SPEED);
@@ -62,7 +76,9 @@ public class TimeAuto extends LinearOpMode {
         while (opModeIsActive() && specimenLift.getCurrentPosition() < (int)(2.9*-537.7)) {
             sleep(10);
         }
-        specimenClaw.setPosition(0.7);
+        specimenClaw.setPosition(openPos);
+
+        //go back
         frontLeftDrive.setPower(-FORWARD_SPEED);
         frontRightDrive.setPower(FORWARD_SPEED);
         backLeftDrive.setPower(FORWARD_SPEED);
@@ -70,6 +86,8 @@ public class TimeAuto extends LinearOpMode {
         while (opModeIsActive() && (runtime.seconds() < 3.4)) {
             sleep(10);
         }
+
+        //park
         frontLeftDrive.setPower(-FORWARD_SPEED);
         frontRightDrive.setPower(-FORWARD_SPEED);
         backLeftDrive.setPower(-FORWARD_SPEED);
@@ -77,10 +95,14 @@ public class TimeAuto extends LinearOpMode {
         while (opModeIsActive() && (runtime.seconds() < 4.6)) {
             sleep(10);
         }
+
+        //stop
         frontLeftDrive.setPower(STOP_SPEED);
         frontRightDrive.setPower(STOP_SPEED);
         backLeftDrive.setPower(STOP_SPEED);
         backRightDrive.setPower(STOP_SPEED);
+
+        //wait
         while (opModeIsActive()) {
             sleep(1);
         }
